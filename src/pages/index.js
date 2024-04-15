@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react"
+import {StaticImage} from "gatsby-plugin-image"
 
 import Nav from "../components/nav"
+import VideoPlayer from "../components/video"
+
+import NbaVideo from "../images/video.mp4"
 
 import Cloud from "../images/cloud.png"
 import Forest from "../images/forest.png"
@@ -27,7 +31,7 @@ const Index = () => {
 
 		const nextSlide = () => {
 
-			clearTimeout(timeout)
+			// clearTimeout(timeout)
 	
 			index += 1
 			index %= pattern.length
@@ -43,11 +47,11 @@ const Index = () => {
 				}
 			})
 
-			timeout = setTimeout(nextSlide, 2000)
+			// timeout = setTimeout(nextSlide, 2000)
 
 		}
 
-		timeout = setTimeout(nextSlide, 2000)
+		// timeout = setTimeout(nextSlide, 2000)
 
 		document.getElementById("slide-container").addEventListener("click", nextSlide)
 
@@ -61,8 +65,14 @@ const Index = () => {
 				<section className="slide-container" id="slide-container">
 					<div className="slide-element">
 						<figure className="slide-figure">
+							<figcaption className="slide-figure-caption">Speaker, Touchpoint 2024</figcaption>
+							<StaticImage src="../images/dantouchpoint.jpeg" alt="touchpoint" />
+						</figure>
+					</div>
+					<div className="slide-element">
+						<figure className="slide-figure">
 							<figcaption className="slide-figure-caption">testing</figcaption>
-							<img src={Cloud} />
+							<VideoPlayer mp4={NbaVideo} />
 						</figure>
 					</div>
 					<div className="slide-element">
@@ -77,12 +87,7 @@ const Index = () => {
 							<img src={Gold} />
 						</figure>
 					</div>
-					<div className="slide-element">
-						<figure className="slide-figure">
-							<figcaption className="slide-figure-caption">testing</figcaption>
-							<img src={Salmon} />
-						</figure>
-					</div>
+					
 					<div className="slide-element">
 						<figure className="slide-figure">
 							<figcaption className="slide-figure-caption">testing</figcaption>
