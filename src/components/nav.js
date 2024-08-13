@@ -25,9 +25,7 @@ const Nav = () => {
 					Dan Nanasi,<br />
 					Product Designer at Microsoft
 				</div>
-				<div className="col-span-7">
-					Helping teams strategically design <br />&amp; build innovative digital products
-				</div>
+				<div className="col-span-7"></div>
 				<div className="col-span-2">
 					Linkedin, Email
 				</div>

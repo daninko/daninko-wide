@@ -1,102 +1,100 @@
 import React, { useEffect, useState } from "react"
-import {StaticImage} from "gatsby-plugin-image"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Nav from "../components/nav"
-import VideoPlayer from "../components/video"
-
-import NbaVideo from "../images/video.mp4"
 
 import Cloud from "../images/cloud.png"
-import Forest from "../images/forest.png"
-import Gold from "../images/gold.png"
-import Salmon from "../images/salmon.png"
-import Sky from "../images/sky.png"
 
 const Index = () => {
-
-
-	const pattern = [
-		[4, 5, 2, 0, 0],
-		[4, 5, 2, 2, 0],
-		[0, 3, 2, 3, 0],
-		[0, 2, 1, 2, 1],
-		[0, 1, 3, 4, 3],
-		[0, 0, 2, 3, 4],
-	]
-
-	useEffect(() => {
-
-		let timeout
-		let index = 0
-
-		const nextSlide = () => {
-
-			// clearTimeout(timeout)
-	
-			index += 1
-			index %= pattern.length
-
-			document.getElementById("slide-container").style.gridTemplateColumns = pattern[index].map((c) => `${c}fr`).join(" ")
-			const slides = document.querySelectorAll('.slide-element')
-	
-			slides.forEach((slide, slideIndex) => {
-				if (pattern[index][slideIndex] === 0) {
-					slide.classList.add("hide")
-				} else {
-					slide.classList.remove("hide")
-				}
-			})
-
-			// timeout = setTimeout(nextSlide, 2000)
-
-		}
-
-		// timeout = setTimeout(nextSlide, 2000)
-
-		document.getElementById("slide-container").addEventListener("click", nextSlide)
-
-	})
-
-	
 	return (
-		<div className="absolute w-full h-full flex flex-col">
+		<>
 			<Nav></Nav>
-			<main className="home-main grow flex items-end">
-				<section className="slide-container" id="slide-container">
-					<div className="slide-element">
-						<figure className="slide-figure">
-							<figcaption className="slide-figure-caption">Speaker, Touchpoint 2024</figcaption>
-							<StaticImage src="../images/dantouchpoint.jpeg" alt="touchpoint" />
-						</figure>
+			<header className="h-screen">
+				<div className="grid grid-cols-12 gap-x-7 px-7">
+					<div className="col-span-10">
+						<p className="font-['Tiempos_Headline'] font-light text-[140px] leading-[1]">
+							A strategically-minded designer helping teams plan and build innovative
+							digital products.
+						</p>
 					</div>
-					<div className="slide-element">
-						<figure className="slide-figure">
-							<figcaption className="slide-figure-caption">testing</figcaption>
-							<VideoPlayer mp4={NbaVideo} />
-						</figure>
+				</div>
+			</header>
+			<main>
+				<section>
+					<div className="grid grid-cols-12 gap-x-7 px-7">
+						<div className="col-span-10">
+							<p className="font-['Tiempos_Headline'] font-light text-[140px] leading-[1]">
+								Making the voices of millions of basketball fans heard
+							</p>
+						</div>
 					</div>
-					<div className="slide-element">
-						<figure className="slide-figure">
-							<figcaption className="slide-figure-caption">testing</figcaption>
-							<img src={Forest} />
-						</figure>
-					</div>
-					<div className="slide-element">
-						<figure className="slide-figure">
-							<figcaption className="slide-figure-caption">testing</figcaption>
-							<img src={Gold} />
-						</figure>
-					</div>
-					
-					<div className="slide-element">
-						<figure className="slide-figure">
-							<figcaption className="slide-figure-caption">testing</figcaption>
-							<img src={Sky} />
-						</figure>
+					<div className="grid grid-cols-12 gap-x-7 px-7">
+						<div className="col-span-6">
+							<img
+								className="rounded-lg mb-7"
+								src={Cloud}
+							/>
+							<img
+								className="rounded-lg mb-7"
+								src={Cloud}
+							/>
+							<img
+								className="rounded-lg mb-7"
+								src={Cloud}
+							/>
+							<img
+								className="rounded-lg mb-7"
+								src={Cloud}
+							/>
+
+						</div>
+						<div className="col-span-6 flex flex-nowrap justify-end relative">
+							<div className="w-screen min-w-[100vw] grid grid-cols-12 gap-x-7 h-full relative">
+								<div className="col-start-8 col-span-4">
+									<div className="sticky top-0">
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Integer ultrices est pharetra ultrices tempor. Etiam eget
+										felis ligula. Integer tristique blandit egestas. Phasellus
+										pellentesque nec quam id aliquam.
+									</p>
+
+									<p>
+										Duis pulvinar ligula eget nulla tincidunt, eget maximus
+										velit luctus. Aenean ac euismod tortor. Morbi lacus nisl,
+										sollicitudin eget hendrerit sed, volutpat sed elit. Vivamus
+										turpis nisl, vulputate ac sem non, posuere dapibus orci.
+									</p>
+
+									<p>
+										Donec nec ante blandit, vestibulum velit non, semper metus.
+										Curabitur scelerisque lorem vel feugiat pharetra. Integer
+										rhoncus massa a blandit semper. In nunc lacus, molestie nec
+										turpis id, suscipit auctor sem.
+									</p>
+
+									<p>
+										Etiam efficitur laoreet lorem, non vestibulum nulla posuere
+										sed. Nam convallis orci urna, nec sodales ex fringilla sit
+										amet. Nulla eget nunc facilisis, elementum eros quis,
+										suscipit nibh.
+									</p>
+
+									<p>
+										In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
+										Maecenas vestibulum justo eu metus efficitur, vitae accumsan
+										ligula imperdiet. Sed a urna lorem. Cras et lectus sed
+										lectus rutrum accumsan.
+									</p>
+								</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
 			</main>
-		</div>
+			<footer></footer>
+		</>
 	)
 }
 

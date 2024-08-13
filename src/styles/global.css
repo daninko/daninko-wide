@@ -29,7 +29,7 @@
 	body {
 		background-color: #0d0d0d;
 		color: white;
-		font-family: i;
+		font-family: "Untitled Sans";
 		font-kerning: normal;
 		font-size: 16px;
 		-webkit-font-smoothing: antialiased;
@@ -62,7 +62,7 @@
 	}
 
 	p {
-		@apply text-body-2 mb-p-bottom leading-snug;
+		@apply text-body-1 mb-p-bottom leading-snug;
 	}
 
 	img {
@@ -119,15 +119,6 @@
 		z-index: 50000;
 	}
 
-	/* .home-main {
-		position: relative;
-		box-sizing: border-box;
-		height: calc(100vh - 125px);
-		width: 100%;
-		display: flex;
-		align-items: end;
-	} */
-
 	.slide-container {
 		@apply box-border;
 		display: grid;
@@ -156,8 +147,12 @@
 		img {
 			width: 100%;
 			height: auto;
-			border-radius: 0.5rem;
+			border-radius: 0.25rem;
 		}
+	}
+
+	video {
+		border-radius: 0.25rem;
 	}
 
 	.slide-figure-caption {
