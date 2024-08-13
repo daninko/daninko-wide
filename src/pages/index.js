@@ -14,7 +14,7 @@ const Index = () => {
 					<div className="col-span-10">
 						<p className="font-['Tiempos_Headline'] font-light text-[140px] leading-[1]">
 							A strategically-minded designer helping teams plan and build innovative
-							digital products.
+							digital products. 
 						</p>
 					</div>
 				</div>
@@ -24,7 +24,7 @@ const Index = () => {
 					<div className="grid grid-cols-12 gap-x-7 px-7">
 						<div className="col-span-10">
 							<p className="font-['Tiempos_Headline'] font-light text-[140px] leading-[1]">
-								Making the voices of millions of basketball fans heard
+								Making the voices of millions of basketball fans heard 
 							</p>
 						</div>
 					</div>
