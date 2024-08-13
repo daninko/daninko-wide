@@ -4,7 +4,7 @@ import {StaticImage} from "gatsby-plugin-image"
 import Nav from "../components/nav"
 import VideoPlayer from "../components/video"
 
-import NbaVideo from "../images/video/video.mp4"
+// import NbaVideo from "../images/video/video.mp4"
 
 import Cloud from "../images/cloud.png"
 import Forest from "../images/forest.png"
@@ -79,7 +79,7 @@ const Index = () => {
 						<figure className="slide-figure">
 							<figcaption className="slide-figure-caption">NBA Team Sites</figcaption>
 							
-							<VideoPlayer mp4={NbaVideo} />
+							{/* <VideoPlayer mp4={NbaVideo} /> */}
 						</figure>
 					</div>
 					<div className="slide-element">
