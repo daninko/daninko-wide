@@ -1,10 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
+import useThrottle from "../hooks/throttle"
 
 import Cloud from "../images/cloud.png"
 
 const Project = ({ byline }) => {
 	const [openItem, setOpen] = useState(false)
+
+	const throttledValue = useThrottle(openItem)
 
 	const varOne = {
 		visible: {
@@ -58,8 +61,8 @@ const Project = ({ byline }) => {
 				bounce: 0,
 				y: {
 					duration: 0.0001,
-					delay: 0.5
-				}
+					delay: 0.5,
+				},
 			},
 		},
 	}
@@ -75,13 +78,12 @@ const Project = ({ byline }) => {
 			</div>
 
 			<div className="relative px-7">
-				
 				<div className="w-full flex">
 					<motion.div
 						layout
 						variants={varOne}
 						initial="visible"
-						animate={openItem ? "visible" : "hidden"}
+						animate={throttledValue ? "visible" : "hidden"}
 						className="z-10 relative"
 					>
 						<img className="rounded-lg mb-7" src={Cloud} />
@@ -93,7 +95,7 @@ const Project = ({ byline }) => {
 						layout
 						variants={varTwo}
 						initial="visible"
-						animate={openItem ? "visible" : "hidden"}
+						animate={throttledValue ? "visible" : "hidden"}
 						className="relative z-0"
 					>
 						<div className="grid grid-cols-6 gap-x-7 h-full w-[50vw] absolute top-0 right-0">
@@ -102,7 +104,7 @@ const Project = ({ byline }) => {
 									<motion.div
 										variants={copyEffect}
 										initial="visible"
-										animate={openItem ? "visible" : "hidden"}
+										animate={throttledValue ? "visible" : "hidden"}
 									>
 										<p>
 											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -145,11 +147,8 @@ const Project = ({ byline }) => {
 						</div>
 					</motion.div>
 				</div>
-				
 			</div>
-			<div className="bottom-0 z-20 w-full left-0 fixed">
-				THIS IS SOMETHING
-			</div>
+			<div className="bottom-0 z-20 w-full left-0 fixed">THIS IS SOMETHING</div>
 		</section>
 	)
 }
