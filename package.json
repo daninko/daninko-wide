@@ -16,6 +16,7 @@
 	},
 	"dependencies": {
 		"@mdx-js/react": "^2.2.1",
+		"@react-hook/size": "^2.1.2",
 		"@restart/hooks": "^0.4.9",
 		"@smakss/react-scroll-direction": "^1.0.5",
 		"@use-it/event-listener": "^0.1.7",
@@ -46,6 +47,7 @@
 		"remark-frontmatter": "^4.0.1",
 		"remark-mdx-frontmatter": "^2.1.1",
 		"sass": "^1.57.1",
+		"scrl": "^2.0.0",
 		"typewriter-effect": "^2.21.0",
 		"use-debounce": "^10.0.2",
 		"use-draggable-scroll": "^0.1.0",

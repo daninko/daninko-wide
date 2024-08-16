@@ -21,7 +21,7 @@ const Index = () => {
 			</header>
 			<main>
 				<Project byline="Making the voices of millions of fans heard" />
-				<Project byline="Making the voices of millions of fans heard" />
+				<div className="h-screen"></div>
 			</main>
 			<footer></footer>
 		</>
