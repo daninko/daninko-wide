@@ -66,24 +66,21 @@ const Project = ({ byline }) => {
 
 	const copyEffect = {
 		visible: {
-			y: 0,
+
 			opacity: 1,
 			transition: {
 				type: "spring",
 				bounce: 0,
-				delay: 0.5,
+				duration: 1
 			},
 		},
 		hidden: {
-			y: "2vw",
+
 			opacity: 0,
 			transition: {
 				type: "spring",
 				bounce: 0,
-				y: {
-					duration: 0.0001,
-					delay: 0.5,
-				},
+				duration: 1
 			},
 		},
 	}

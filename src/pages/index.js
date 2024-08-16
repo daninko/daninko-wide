@@ -12,9 +12,9 @@ const Index = () => {
 			<header className="h-[120vh] py-7">
 				<div className="grid grid-cols-12 gap-x-7 px-7">
 					<div className="col-span-10">
-						<p className="font-['hl'] font-light text-[140px] leading-[1]">
+						<p className="font-['hl'] font-light text-[140px] leading-[1.1]">
 							A strategically-minded designer helping teams plan and build innovative
-							digital products. 
+							digital products.  <span className="py-1 font-['s'] text-2xl border-b border-[#f9f9f9] border-solid">more +</span>
 						</p>
 					</div>
 				</div>
