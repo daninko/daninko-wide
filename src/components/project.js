@@ -23,7 +23,7 @@ const Project = ({ byline }) => {
 
 	const throttledValue = useThrottle(openItem)
 
-	const scrl = new Scrl()
+	const scrl = new Scrl({friction: 0.5})
 
 	const cursorX = useMotionValue(0)
 	const cursorY = useMotionValue()
@@ -71,7 +71,7 @@ const Project = ({ byline }) => {
 			transition: {
 				type: "spring",
 				bounce: 0,
-				delay: 0.25,
+				delay: 0.5,
 			},
 		},
 		hidden: {
@@ -90,7 +90,7 @@ const Project = ({ byline }) => {
 
 	const stickyButtonEffects = {
 		hover: {
-			scale: 1.2,
+			scale: 1.1,
 			opacity: 1,
 		},
 		normal: {
@@ -131,10 +131,10 @@ const Project = ({ byline }) => {
 	useEffect(() => {
 		const moveCursor = (e) => {
 			if (e.clientY > screenSize.height*0.8) {
-			if (e.clientX > 75) {
+			if (e.clientX > 100) {
 				cursorX.set(e.clientX - 100)
 			}
-			if (e.clientX < 75) {
+			if (e.clientX < 100) {
 				cursorX.set(0)
 			}
 			} else {
@@ -155,14 +155,14 @@ const Project = ({ byline }) => {
 		<section>
 			<div className="grid grid-cols-12 gap-x-7 px-7">
 				<div className="col-span-10">
-					<p className="font-['Tiempos_Headline'] font-light text-[140px] leading-[1]">
-						{byline}
+					<p className="font-['hl'] font-light mb-16 text-[140px] leading-[1]">
+						{byline} <span className="font-['s'] text-2xl">NBA All-Star Vote</span>
 					</p>
 				</div>
 			</div>
 
 			<InView
-				rootMargin="-100% -50% 0% -50%"
+				rootMargin="-95% -50% -5% -50%"
 				as="div"
 				className="relative px-7"
 				onChange={(inView, entry) => {
@@ -180,14 +180,14 @@ const Project = ({ byline }) => {
 						animate={throttledValue ? "visible" : "hidden"}
 						className="z-10 relative"
 					>
-						<img className="rounded-lg mb-7" src={Cloud} />
-						<div className="grid grid-cols-2 gap-x-7">
-							<img className="grid-span-1 rounded-lg mb-7" src={Gold} />
-							<img className="grid-span-1 rounded-lg mb-7" src={Sky} />
+						<img className="rounded-lg mb-4" src={Cloud} />
+						<div className="grid grid-cols-2 gap-x-4">
+							<img className="grid-span-1 rounded-lg mb-4" src={Gold} />
+							<img className="grid-span-1 rounded-lg mb-4" src={Sky} />
 						</div>
-						<img className="rounded-lg mb-7" src={Forest} />
-						<img className="rounded-lg mb-7" src={Gold} />
-						<img className="rounded-lg mb-7" src={Sky} />
+						<img className="rounded-lg mb-4" src={Forest} />
+						<img className="rounded-lg mb-4" src={Gold} />
+						<img className="rounded-lg mb-4" src={Sky} />
 					</motion.div>
 					<motion.div
 						layout
@@ -196,9 +196,9 @@ const Project = ({ byline }) => {
 						animate={throttledValue ? "visible" : "hidden"}
 						className="relative z-0"
 					>
-						<div className="grid grid-cols-6 gap-x-7 h-full w-[50vw] absolute top-0 right-0">
+						<div className="grid grid-cols-6 gap-x-4 h-full w-[50vw] absolute top-0 right-0">
 							<div className="col-start-2 col-span-4">
-								<div className="sticky py-20 px-20" style={{top: (height-screenSize.height) *-1}} ref={thingyRef}>
+								<div className="sticky py-20 px-10" style={{top: (height-screenSize.height) *-1}} ref={thingyRef}>
 									<motion.div
 										variants={copyEffect}
 										initial="visible"
@@ -275,7 +275,7 @@ const Project = ({ byline }) => {
 				</div>
 			</InView>
 			<motion.div
-				className="bottom-0 mb-7 z-20 left-0 fixed flex justify-center"
+				className="bottom-14 z-20 left-0 fixed flex justify-center"
 				style={{
 					translateX: cursorXSpring,
 				}}
@@ -285,7 +285,7 @@ const Project = ({ byline }) => {
 				animate={visibleButton ? {scale: 1, opacity: 1} : {scale: 0, opacity: 0}}
 			>
 				<motion.div
-					className="w-[200px] text-black text-center leading-[60px] abolute left-0 cursor-pointer"
+					className="w-[200px] text-black text-center leading-[50px] abolute left-0 cursor-pointer"
 					onClick={() => doTheThing()}
 				>
 					<motion.div

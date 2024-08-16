@@ -9,6 +9,19 @@
 		font-stretch: 100%;
 		font-weight: 400 500 600 700;
 	}
+	@font-face {
+		font-family: "s";
+		src: url("./fonts/Sohne-Buch.woff2") format("woff2");
+		font-stretch: 100%;
+		font-weight: 400 500 600 700;
+	}
+
+	@font-face {
+		font-family: "hl";
+		src: url("./fonts/Headline-Light.woff2") format("woff2");
+		font-stretch: 100%;
+		font-weight: 400 500 600 700;
+	}
 
 	@font-face {
 		font-family: "m";
@@ -28,13 +41,13 @@
 
 	body {
 		background-color: #0d0d0d;
-		color: white;
-		font-family: "Untitled Sans";
+		color:#f9f9f9;
+		font-family: "s";
 		font-kerning: normal;
-		font-size: 16px;
+		font-size: 18px;
 		-webkit-font-smoothing: antialiased;
-		font-feature-settings: "ss01" on, "ss05" on, "ss07" on, "ss09" on, "ss04" on, "ss06" on,
-			"ss03" on;
+		/* font-feature-settings: "ss01" on, "ss05" on, "ss07" on, "ss09" on, "ss04" on, "ss06" on,
+			"ss03" on; */
 	}
 
 	h1 {
@@ -62,7 +75,7 @@
 	}
 
 	p {
-		@apply text-body-1 mb-p-bottom leading-snug;
+		@apply text-2xl mb-p-bottom leading-normal;
 	}
 
 	img {

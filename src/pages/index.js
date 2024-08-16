@@ -9,10 +9,10 @@ const Index = () => {
 	return (
 		<>
 			<Nav></Nav>
-			<header className="h-screen">
+			<header className="h-[120vh] py-7">
 				<div className="grid grid-cols-12 gap-x-7 px-7">
 					<div className="col-span-10">
-						<p className="font-['Tiempos_Headline'] font-light text-[140px] leading-[1]">
+						<p className="font-['hl'] font-light text-[140px] leading-[1]">
 							A strategically-minded designer helping teams plan and build innovative
 							digital products. 
 						</p>
@@ -20,7 +20,7 @@ const Index = () => {
 				</div>
 			</header>
 			<main>
-				<Project byline="Making the voices of millions of fans heard" />
+				<Project byline="20% increase in global fan submissions" />
 				<div className="h-screen"></div>
 			</main>
 			<footer></footer>
