@@ -75,7 +75,7 @@
 	}
 
 	p {
-		@apply text-2xl mb-p-bottom leading-normal;
+		@apply text-xl mb-p-bottom max-w-[55ch];
 	}
 
 	img {

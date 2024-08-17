@@ -2,28 +2,29 @@ import React, { useState, useRef, useEffect, useCallback } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
 import useThrottle from "../hooks/throttle"
 import { InView } from "react-intersection-observer"
-import useSize from '@react-hook/size'
+import useSize from "@react-hook/size"
 import useScreenSize from "../hooks/useScreenSize"
-import Scrl from 'scrl'
+import Scrl from "scrl"
+
+import ImgScale from "./portfolio-img"
 
 import Cloud from "../images/cloud.png"
 import Forest from "../images/forest.png"
 import Gold from "../images/gold.png"
 import Sky from "../images/sky.png"
 
-
 const Project = ({ byline }) => {
 	const [openItem, setOpen] = useState(false)
 	const [visibleButton, setVisibleButton] = useState(false)
 	const myRef = useRef(null)
 	const thingyRef = useRef(null)
-	const screenSize = useScreenSize();
+	const screenSize = useScreenSize()
 
 	const [width, height] = useSize(thingyRef)
 
 	const throttledValue = useThrottle(openItem)
 
-	const scrl = new Scrl({friction: 0.5})
+	const scrl = new Scrl({ friction: 0.6 })
 
 	const cursorX = useMotionValue(0)
 	const cursorY = useMotionValue()
@@ -66,21 +67,19 @@ const Project = ({ byline }) => {
 
 	const copyEffect = {
 		visible: {
-
 			opacity: 1,
 			transition: {
 				type: "spring",
 				bounce: 0,
-				duration: 1
+				duration: 1,
 			},
 		},
 		hidden: {
-
 			opacity: 0,
 			transition: {
 				type: "spring",
 				bounce: 0,
-				duration: 1
+				duration: 1,
 			},
 		},
 	}
@@ -115,7 +114,6 @@ const Project = ({ byline }) => {
 	const doTheThing = () => {
 		if (throttledValue) {
 			setOpen(false)
-			
 		} else {
 			setOpen(true)
 			scrl.scrollTo(myRef.current)
@@ -123,19 +121,22 @@ const Project = ({ byline }) => {
 		}
 	}
 
-	const executeScroll = () => myRef.current.scrollIntoView({behavior: "smooth"})    
+	const executeScroll = () => myRef.current.scrollIntoView({ behavior: "smooth" })
 
 	useEffect(() => {
 		const moveCursor = (e) => {
-			if (e.clientY > screenSize.height*0.8) {
-			if (e.clientX > 100) {
-				cursorX.set(e.clientX - 100)
-			}
-			if (e.clientX < 100) {
-				cursorX.set(0)
-			}
+			if (e.clientY > screenSize.height * 0.8) {
+				if (e.clientX > 100) {
+					cursorX.set(e.clientX - 100)
+				}
+				if (e.clientX < 100) {
+					cursorX.set(0)
+				}
+				if (e.clientX > screenSize.width - 250) {
+					cursorX.set(screenSize.width - 250)
+				}
 			} else {
-				cursorX.set(screenSize.width/2 - 100)
+				cursorX.set(screenSize.width / 2 - 100)
 			}
 		}
 
@@ -149,53 +150,54 @@ const Project = ({ byline }) => {
 	}, [])
 
 	return (
-		<section>
-			<div className="grid grid-cols-12 gap-x-7 px-7">
+		<section className="relative">
+			<div className="grid grid-cols-12 gap-x-3 px-7">
 				<div className="col-span-10">
 					<p className="font-['hl'] font-light mb-16 text-[140px] leading-[1]">
-						{byline} <span className="font-['s'] text-2xl">NBA All-Star Vote</span>
+						{byline} <span className="font-['s'] text-xl">NBA All-Star Vote</span>
 					</p>
 				</div>
 			</div>
 
-			<InView
-				rootMargin="-95% -50% -5% -50%"
-				as="div"
-				className="relative px-7"
-				onChange={(inView, entry) => {
-					// if (inView) {
-					// } else {
-					// }
-					setVisibleButton(inView)
-				}}
-			>
-				<div className="w-full flex" ref={myRef}>
-					<motion.div
-						layout
-						variants={varOne}
-						initial="visible"
-						animate={throttledValue ? "visible" : "hidden"}
-						className="z-10 relative"
-					>
-						<img className="rounded-lg mb-4" src={Cloud} />
-						<div className="grid grid-cols-2 gap-x-4">
-							<img className="grid-span-1 rounded-lg mb-4" src={Gold} />
-							<img className="grid-span-1 rounded-lg mb-4" src={Sky} />
+			<div className="relative">
+				<InView
+					rootMargin="-95% -50% -5% -50%"
+					as="div"
+					className="relative px-7"
+					onChange={(inView, entry) => {
+						setVisibleButton(inView)
+					}}
+				>
+					<div className="w-full flex" ref={myRef}>
+						<div className="w-full z-10 pointer-events-none">
+							<ImgScale size="90vw" value={throttledValue}>
+								<img className="w-full rounded mb-3" src={Cloud} />
+							</ImgScale>
+
+							<ImgScale size="70vw" value={throttledValue} grid={true}>
+								<img className="grid-span-1 rounded mb-3" src={Gold} />
+								<img className="grid-span-1 rounded mb-3" src={Sky} />
+							</ImgScale>
+
+							<ImgScale size="80vw" value={throttledValue}>
+								<img className="w-full rounded mb-3" src={Forest} />
+							</ImgScale>
+
+							<ImgScale size="90vw" value={throttledValue}>
+								<img className="w-full rounded mb-3" src={Gold} />
+							</ImgScale>
+
+							<ImgScale size="80vw" value={throttledValue}>
+								<img className="w-full rounded mb-3" src={Sky} />
+							</ImgScale>
 						</div>
-						<img className="rounded-lg mb-4" src={Forest} />
-						<img className="rounded-lg mb-4" src={Gold} />
-						<img className="rounded-lg mb-4" src={Sky} />
-					</motion.div>
-					<motion.div
-						layout
-						variants={varTwo}
-						initial="visible"
-						animate={throttledValue ? "visible" : "hidden"}
-						className="relative z-0"
-					>
-						<div className="grid grid-cols-6 gap-x-4 h-full w-[50vw] absolute top-0 right-0">
-							<div className="col-start-2 col-span-4">
-								<div className="sticky py-20 px-10" style={{top: (height-screenSize.height) *-1}} ref={thingyRef}>
+						<div className="h-full w-[50vw] flex justify-center absolute top-0 right-0">
+							<div className="relative">
+								<div
+									className="sticky py-20 px-20"
+									style={{ top: (height - screenSize.height) * -1 }}
+									ref={thingyRef}
+								>
 									<motion.div
 										variants={copyEffect}
 										initial="visible"
@@ -245,6 +247,13 @@ const Project = ({ byline }) => {
 										</p>
 
 										<p>
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Integer ultrices est pharetra ultrices tempor. Etiam
+											eget felis ligula. Integer tristique blandit egestas.
+											Phasellus pellentesque nec quam id aliquam.
+										</p>
+
+										<p>
 											In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
 											Maecenas vestibulum justo eu metus efficitur, vitae
 											accumsan ligula imperdiet. Sed a urna lorem. Cras et
@@ -259,6 +268,13 @@ const Project = ({ byline }) => {
 										</p>
 
 										<p>
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Integer ultrices est pharetra ultrices tempor. Etiam
+											eget felis ligula. Integer tristique blandit egestas.
+											Phasellus pellentesque nec quam id aliquam.
+										</p>
+
+										<p>
 											In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
 											Maecenas vestibulum justo eu metus efficitur, vitae
 											accumsan ligula imperdiet. Sed a urna lorem. Cras et
@@ -268,22 +284,18 @@ const Project = ({ byline }) => {
 								</div>
 							</div>
 						</div>
-					</motion.div>
-				</div>
-			</InView>
-			<motion.div
-				className="bottom-14 z-20 left-0 fixed flex justify-center"
-				style={{
-					translateX: cursorXSpring,
-				}}
-				initial={{
-					scale: 0
-				}}
-				animate={visibleButton ? {scale: 1, opacity: 1} : {scale: 0, opacity: 0}}
-			>
+					</div>
+				</InView>
 				<motion.div
-					className="w-[200px] text-black text-center leading-[50px] abolute left-0 cursor-pointer"
+					className="w-[200px] text-black text-center leading-[50px] z-20 sticky left-0 bottom-14 cursor-pointer"
 					onClick={() => doTheThing()}
+					style={{
+						translateX: cursorXSpring,
+					}}
+					initial={{
+						scale: 0,
+					}}
+					animate={visibleButton ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
 				>
 					<motion.div
 						whileHover="hover"
@@ -292,17 +304,12 @@ const Project = ({ byline }) => {
 							type: "spring",
 							bounce: 0,
 						}}
-						
 						variants={stickyButtonEffects}
 						className="origin-center z-0 rounded-full absolute top-0 left-0 w-[200px] h-full bg-white"
 					></motion.div>
-					<motion.span
-						className="relative pointer-events-none z-10"
-					>
-						Project info
-					</motion.span>
+					<span className="relative pointer-events-none z-10">Project info</span>
 				</motion.div>
-			</motion.div>
+			</div>
 		</section>
 	)
 }

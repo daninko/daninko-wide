@@ -14,7 +14,7 @@ const Index = () => {
 					<div className="col-span-10">
 						<p className="font-['hl'] font-light text-[140px] leading-[1.1]">
 							A strategically-minded designer helping teams plan and build innovative
-							digital products.  <span className="py-1 font-['s'] text-2xl border-b border-[#f9f9f9] border-solid">more +</span>
+							digital products.  <span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] border-solid">more +</span>
 						</p>
 					</div>
 				</div>
