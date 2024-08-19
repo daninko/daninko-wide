@@ -19,17 +19,35 @@ const Project = ({ byline }) => {
 	const myRef = useRef(null)
 	const thingyRef = useRef(null)
 	const screenSize = useScreenSize()
+	const ref = useRef(null)
 
 	const [width, height] = useSize(thingyRef)
 
 	const throttledValue = useThrottle(openItem)
 
-	const scrl = new Scrl({ friction: 0.6 })
+	const scrl = new Scrl({ friction: 0.45 })
 
 	const cursorX = useMotionValue(0)
 	const cursorY = useMotionValue()
 	const springConfig = { damping: 20 }
 	const cursorXSpring = useSpring(cursorX, springConfig)
+
+	const [position, setPosition] = useState({ x: 0, y: 0 })
+
+	const handleMouse = (e) => {
+		const { clientX, clientY } = e
+		const { height, width, left, top } = ref.current.getBoundingClientRect()
+		const middleX = clientX - (left + width / 2)
+		const middleY = clientY - (top + height / 2)
+
+		setPosition({ x: middleX, y: middleY })
+	}
+
+	const reset = () => {
+		setPosition({ x: 0, y: 0 })
+	}
+
+	const { x, y } = position
 
 	const varOne = {
 		visible: {
@@ -117,7 +135,6 @@ const Project = ({ byline }) => {
 		} else {
 			setOpen(true)
 			scrl.scrollTo(myRef.current)
-			// executeScroll()
 		}
 	}
 
@@ -287,23 +304,18 @@ const Project = ({ byline }) => {
 					</div>
 				</InView>
 				<motion.div
-					className="w-[200px] text-black text-center leading-[50px] z-20 sticky left-0 bottom-14 cursor-pointer"
-					onClick={() => doTheThing()}
-					style={{
-						translateX: cursorXSpring,
-					}}
-					initial={{
-						scale: 0,
-					}}
-					animate={visibleButton ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+					onMouseMove={handleMouse}
+					onMouseLeave={reset}
+					onClick={doTheThing}
+					animate={{ x, y }}
+					transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+					ref={ref}
+					style={{left: "calc(50% - 100px)"}}
+					className="w-[200px] text-black text-center leading-[50px] z-20 sticky bottom-14 cursor-pointer"
 				>
 					<motion.div
 						whileHover="hover"
 						initial="normal"
-						transition={{
-							type: "spring",
-							bounce: 0,
-						}}
 						variants={stickyButtonEffects}
 						className="origin-center z-0 rounded-full absolute top-0 left-0 w-[200px] h-full bg-white"
 					></motion.div>

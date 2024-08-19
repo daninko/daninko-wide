@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { graphql, Link } from "gatsby"
 
 import Nav from "../components/nav"
 import Project from "../components/project"
@@ -27,5 +28,25 @@ const Index = () => {
 		</>
 	)
 }
+
+export const Head = () => (
+	<>
+		<html lang="en" prefix="og: http://ogp.me/ns#" />
+		<title>Dan Nanasi</title>
+	</>
+)
+
+export const query = graphql`
+	query MyQuery {
+		site {
+			siteMetadata {
+				title
+				description
+				url
+				author
+			}
+		}
+	}
+`
 
 export default Index

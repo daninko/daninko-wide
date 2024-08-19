@@ -3,7 +3,7 @@
  */
 module.exports = {
 	siteMetadata: {
-		title: `Dan Nanasi, Product and Experience Design`,
+		title: `Dan Nanasi, Product Design`,
 		author: `Dan Nanasi`,
 		email: `dannanasi@gmail.com`,
 		type: `website`,
