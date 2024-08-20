@@ -21,6 +21,9 @@ const Project = ({ byline }) => {
 	const screenSize = useScreenSize()
 	const ref = useRef(null)
 
+	const [tipOne, setTipOne] = useState(false)
+	const [tipTwo, setTipTwo] = useState(false)
+
 	const [width, height] = useSize(thingyRef)
 
 	const throttledValue = useThrottle(openItem)
@@ -177,150 +180,185 @@ const Project = ({ byline }) => {
 			</div>
 
 			<div className="relative">
+				<div className="absolute z-30 top-20 left-0 w-full pointer-events-none" style={{height: "calc(100% - 7rem)"}}>
+					<div className="w-full sticky top-20 left-0 grid grid-cols-12 gap-x-3 px-7 box-border">
+						<div className="col-span-1 col-start-12 pl-3">
+							<div
+								onClick={doTheThing}
+								onMouseOver={() => setTipOne(true)}
+								onMouseOut={() => setTipOne(false)}
+								className="pointer-events-auto w-[70px] h-[70px] relative cursor-pointer rounded-full border flex items-center justify-center mx-auto mb-2 border-[rgba(255,255,255,0.1)] wang-jangle"
+							>
+								<motion.span
+									initial={{ opacity: 0, x:-20 }}
+									animate={tipOne ? { opacity: 1, x:0 } : { opacity: 0, x:-20 }}
+									transition={{type: "spring", bounce: 0, duration: 0.35}}
+									class="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
+								>
+									{throttledValue ? "hide details" : "see details"}
+								</motion.span>
+								{throttledValue && (
+									<span class="material-symbols-outlined pointer-events-none">
+										close_small
+									</span>
+								)}
+								{!throttledValue && (
+									<span
+										class="material-symbols-outlined pointer-events-none"
+										style={{ transform: "rotate(180deg)" }}
+									>
+										read_more
+									</span>
+								)}
+							</div>
+							<div
+								onMouseOver={() => setTipTwo(true)}
+								onMouseOut={() => setTipTwo(false)}
+								className="pointer-events-auto w-[70px] h-[70px] relative cursor-pointer rounded-full border flex items-center justify-center mx-auto border-[rgba(255,255,255,0.1)] wang-jangle"
+							>
+								<motion.span
+									initial={{ opacity: 0, x:-20 }}
+									animate={tipTwo ? { opacity: 1, x:0 } : { opacity: 0, x:-20 }}
+									transition={{type: "spring", bounce: 0, duration: 0.35}}
+									class="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
+								>
+									see live
+								</motion.span>
+								<span
+									class="material-symbols-outlined"
+									style={{ fontSize: "32px" }}
+								>
+									arrow_outward
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
 				<InView
 					rootMargin="-95% -50% -5% -50%"
 					as="div"
-					className="relative px-7"
+					className="relative mx-7"
 					onChange={(inView, entry) => {
 						setVisibleButton(inView)
 					}}
 				>
-					<div className="w-full flex" ref={myRef}>
-						<div className="w-full z-10 pointer-events-none">
-							<ImgScale size="90vw" value={throttledValue}>
+					<div className="w-full grid grid-cols-12 gap-x-3" ref={myRef}>
+						<div className="col-span-11 z-10 pointer-events-none">
+							<ImgScale size="100%" value={throttledValue}>
 								<img className="w-full rounded mb-3" src={Cloud} />
 							</ImgScale>
 
-							<ImgScale size="70vw" value={throttledValue} grid={true}>
+							<ImgScale size="70%" value={throttledValue} grid={true}>
 								<img className="grid-span-1 rounded mb-3" src={Gold} />
 								<img className="grid-span-1 rounded mb-3" src={Sky} />
 							</ImgScale>
 
-							<ImgScale size="80vw" value={throttledValue}>
+							<ImgScale size="80%" value={throttledValue}>
 								<img className="w-full rounded mb-3" src={Forest} />
 							</ImgScale>
 
-							<ImgScale size="90vw" value={throttledValue}>
+							<ImgScale size="90%" value={throttledValue}>
 								<img className="w-full rounded mb-3" src={Gold} />
 							</ImgScale>
 
-							<ImgScale size="80vw" value={throttledValue}>
+							<ImgScale size="80%" value={throttledValue}>
 								<img className="w-full rounded mb-3" src={Sky} />
 							</ImgScale>
 						</div>
-						<div className="h-full w-[50vw] flex justify-center absolute top-0 right-0">
-							<div className="relative">
-								<div
-									className="sticky py-20 px-20"
-									style={{ top: (height - screenSize.height) * -1 }}
-									ref={thingyRef}
+					</div>
+					<div className="h-full w-full grid grid-cols-12 gap-x-3 absolute top-0 right-0">
+						<div className="relative col-span-4 col-start-8">
+							<div
+								className="sticky py-20 pr-10"
+								style={{ top: (height - screenSize.height) * -1 }}
+								ref={thingyRef}
+							>
+								<motion.div
+									variants={copyEffect}
+									initial="visible"
+									animate={throttledValue ? "visible" : "hidden"}
 								>
-									<motion.div
-										variants={copyEffect}
-										initial="visible"
-										animate={throttledValue ? "visible" : "hidden"}
-									>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Integer ultrices est pharetra ultrices tempor. Etiam
-											eget felis ligula. Integer tristique blandit egestas.
-											Phasellus pellentesque nec quam id aliquam.
-										</p>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Integer ultrices est pharetra ultrices tempor. Etiam eget
+										felis ligula. Integer tristique blandit egestas. Phasellus
+										pellentesque nec quam id aliquam.
+									</p>
 
-										<p>
-											Duis pulvinar ligula eget nulla tincidunt, eget maximus
-											velit luctus. Aenean ac euismod tortor. Morbi lacus
-											nisl, sollicitudin eget hendrerit sed, volutpat sed
-											elit. Vivamus turpis nisl, vulputate ac sem non, posuere
-											dapibus orci.
-										</p>
+									<p>
+										Duis pulvinar ligula eget nulla tincidunt, eget maximus
+										velit luctus. Aenean ac euismod tortor. Morbi lacus nisl,
+										sollicitudin eget hendrerit sed, volutpat sed elit. Vivamus
+										turpis nisl, vulputate ac sem non, posuere dapibus orci.
+									</p>
 
-										<p>
-											Donec nec ante blandit, vestibulum velit non, semper
-											metus. Curabitur scelerisque lorem vel feugiat pharetra.
-											Integer rhoncus massa a blandit semper. In nunc lacus,
-											molestie nec turpis id, suscipit auctor sem.
-										</p>
+									<p>
+										Donec nec ante blandit, vestibulum velit non, semper metus.
+										Curabitur scelerisque lorem vel feugiat pharetra. Integer
+										rhoncus massa a blandit semper. In nunc lacus, molestie nec
+										turpis id, suscipit auctor sem.
+									</p>
 
-										<p>
-											Etiam efficitur laoreet lorem, non vestibulum nulla
-											posuere sed. Nam convallis orci urna, nec sodales ex
-											fringilla sit amet. Nulla eget nunc facilisis, elementum
-											eros quis, suscipit nibh.
-										</p>
+									<p>
+										Etiam efficitur laoreet lorem, non vestibulum nulla posuere
+										sed. Nam convallis orci urna, nec sodales ex fringilla sit
+										amet. Nulla eget nunc facilisis, elementum eros quis,
+										suscipit nibh.
+									</p>
 
-										<p>
-											In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
-											Maecenas vestibulum justo eu metus efficitur, vitae
-											accumsan ligula imperdiet. Sed a urna lorem. Cras et
-											lectus sed lectus rutrum accumsan.
-										</p>
+									<p>
+										In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
+										Maecenas vestibulum justo eu metus efficitur, vitae accumsan
+										ligula imperdiet. Sed a urna lorem. Cras et lectus sed
+										lectus rutrum accumsan.
+									</p>
 
-										<p>
-											Etiam efficitur laoreet lorem, non vestibulum nulla
-											posuere sed. Nam convallis orci urna, nec sodales ex
-											fringilla sit amet. Nulla eget nunc facilisis, elementum
-											eros quis, suscipit nibh.
-										</p>
+									<p>
+										Etiam efficitur laoreet lorem, non vestibulum nulla posuere
+										sed. Nam convallis orci urna, nec sodales ex fringilla sit
+										amet. Nulla eget nunc facilisis, elementum eros quis,
+										suscipit nibh.
+									</p>
 
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Integer ultrices est pharetra ultrices tempor. Etiam
-											eget felis ligula. Integer tristique blandit egestas.
-											Phasellus pellentesque nec quam id aliquam.
-										</p>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Integer ultrices est pharetra ultrices tempor. Etiam eget
+										felis ligula. Integer tristique blandit egestas. Phasellus
+										pellentesque nec quam id aliquam.
+									</p>
 
-										<p>
-											In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
-											Maecenas vestibulum justo eu metus efficitur, vitae
-											accumsan ligula imperdiet. Sed a urna lorem. Cras et
-											lectus sed lectus rutrum accumsan.
-										</p>
+									<p>
+										In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
+										Maecenas vestibulum justo eu metus efficitur, vitae accumsan
+										ligula imperdiet. Sed a urna lorem. Cras et lectus sed
+										lectus rutrum accumsan.
+									</p>
 
-										<p>
-											Etiam efficitur laoreet lorem, non vestibulum nulla
-											posuere sed. Nam convallis orci urna, nec sodales ex
-											fringilla sit amet. Nulla eget nunc facilisis, elementum
-											eros quis, suscipit nibh.
-										</p>
+									<p>
+										Etiam efficitur laoreet lorem, non vestibulum nulla posuere
+										sed. Nam convallis orci urna, nec sodales ex fringilla sit
+										amet. Nulla eget nunc facilisis, elementum eros quis,
+										suscipit nibh.
+									</p>
 
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Integer ultrices est pharetra ultrices tempor. Etiam
-											eget felis ligula. Integer tristique blandit egestas.
-											Phasellus pellentesque nec quam id aliquam.
-										</p>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Integer ultrices est pharetra ultrices tempor. Etiam eget
+										felis ligula. Integer tristique blandit egestas. Phasellus
+										pellentesque nec quam id aliquam.
+									</p>
 
-										<p>
-											In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
-											Maecenas vestibulum justo eu metus efficitur, vitae
-											accumsan ligula imperdiet. Sed a urna lorem. Cras et
-											lectus sed lectus rutrum accumsan.
-										</p>
-									</motion.div>
-								</div>
+									<p>
+										In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
+										Maecenas vestibulum justo eu metus efficitur, vitae accumsan
+										ligula imperdiet. Sed a urna lorem. Cras et lectus sed
+										lectus rutrum accumsan.
+									</p>
+								</motion.div>
 							</div>
 						</div>
 					</div>
 				</InView>
-				<motion.div
-					onMouseMove={handleMouse}
-					onMouseLeave={reset}
-					onClick={doTheThing}
-					animate={{ x, y }}
-					transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-					ref={ref}
-					style={{left: "calc(50% - 100px)"}}
-					className="w-[200px] text-black text-center leading-[50px] z-20 sticky bottom-14 cursor-pointer"
-				>
-					<motion.div
-						whileHover="hover"
-						initial="normal"
-						variants={stickyButtonEffects}
-						className="origin-center z-0 rounded-full absolute top-0 left-0 w-[200px] h-full bg-white"
-					></motion.div>
-					<span className="relative pointer-events-none z-10">Project info</span>
-				</motion.div>
 			</div>
 		</section>
 	)
