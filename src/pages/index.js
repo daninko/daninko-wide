@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { graphql, Link } from "gatsby"
+import React, { } from "react"
+import { graphql } from "gatsby"
 
 import Nav from "../components/nav"
 import Project from "../components/project"
 
-const Index = () => {
+const Index = ({ data }) => {
 	return (
 		<>
 			<Nav></Nav>
@@ -21,8 +21,20 @@ const Index = () => {
 					</div>
 				</div>
 			</header>
+			{/* {data.allMdx.edges.map(({ node }, i) => {
+				return (
+					<>
+						<div dangerouslySetInnerHTML={{ __html: node.body }} />
+					</>
+				)
+			})} */}
 			<main>
-				<Project byline="20% increase in global fan submissions" />
+				{data.allMdx.edges.map(({ node }, i) => {
+					return(
+						<Project content={node} />
+					)
+				})}
+
 				<div className="h-screen"></div>
 			</main>
 			<footer></footer>
@@ -49,6 +61,25 @@ export const query = graphql`
 				description
 				url
 				author
+			}
+		}
+		allMdx {
+			edges {
+				node {
+					body
+					frontmatter {
+						title
+						project
+						assets {
+							image {
+								childImageSharp {
+									gatsbyImageData(layout:FULL_WIDTH, formats: WEBP, webpOptions: {quality: 100})
+								  }
+							}
+							size
+						}
+					}
+				}
 			}
 		}
 	}

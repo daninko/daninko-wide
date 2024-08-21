@@ -1,25 +1,18 @@
-import React, { useState, useRef, useEffect, useCallback } from "react"
-import { motion, useMotionValue, useSpring } from "framer-motion"
+import React, { useState, useRef, useEffect } from "react"
+import { motion } from "framer-motion"
 import useThrottle from "../hooks/throttle"
-import { InView } from "react-intersection-observer"
 import useSize from "@react-hook/size"
 import useScreenSize from "../hooks/useScreenSize"
 import Scrl from "scrl"
 
 import ImgScale from "./portfolio-img"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-import Cloud from "../images/cloud.png"
-import Forest from "../images/forest.png"
-import Gold from "../images/gold.png"
-import Sky from "../images/sky.png"
-
-const Project = ({ byline }) => {
+const Project = ({ byline, children, content }) => {
 	const [openItem, setOpen] = useState(false)
-	const [visibleButton, setVisibleButton] = useState(false)
 	const myRef = useRef(null)
 	const thingyRef = useRef(null)
 	const screenSize = useScreenSize()
-	const ref = useRef(null)
 
 	const [tipOne, setTipOne] = useState(false)
 	const [tipTwo, setTipTwo] = useState(false)
@@ -29,62 +22,6 @@ const Project = ({ byline }) => {
 	const throttledValue = useThrottle(openItem)
 
 	const scrl = new Scrl({ friction: 0.45 })
-
-	const cursorX = useMotionValue(0)
-	const cursorY = useMotionValue()
-	const springConfig = { damping: 20 }
-	const cursorXSpring = useSpring(cursorX, springConfig)
-
-	const [position, setPosition] = useState({ x: 0, y: 0 })
-
-	const handleMouse = (e) => {
-		const { clientX, clientY } = e
-		const { height, width, left, top } = ref.current.getBoundingClientRect()
-		const middleX = clientX - (left + width / 2)
-		const middleY = clientY - (top + height / 2)
-
-		setPosition({ x: middleX, y: middleY })
-	}
-
-	const reset = () => {
-		setPosition({ x: 0, y: 0 })
-	}
-
-	const { x, y } = position
-
-	const varOne = {
-		visible: {
-			flexBasis: "50%",
-			transition: {
-				type: "spring",
-				bounce: 0,
-			},
-		},
-		hidden: {
-			flexBasis: "100%",
-			transition: {
-				type: "spring",
-				bounce: 0,
-			},
-		},
-	}
-
-	const varTwo = {
-		visible: {
-			flexBasis: "50%",
-			transition: {
-				type: "spring",
-				bounce: 0,
-			},
-		},
-		hidden: {
-			flexBasis: "0%",
-			transition: {
-				type: "spring",
-				bounce: 0,
-			},
-		},
-	}
 
 	const copyEffect = {
 		visible: {
@@ -105,33 +42,6 @@ const Project = ({ byline }) => {
 		},
 	}
 
-	const stickyButtonEffects = {
-		hover: {
-			scale: 1.1,
-			opacity: 1,
-		},
-		normal: {
-			scale: 1,
-			opacity: 1,
-			width: 200,
-			transition: {
-				opacity: {
-					duration: 0.25,
-				},
-			},
-		},
-		hidden: {
-			opacity: 0,
-			width: 40,
-			scale: 0,
-			transition: {
-				opacity: {
-					duration: 0.25,
-				},
-			},
-		},
-	}
-
 	const doTheThing = () => {
 		if (throttledValue) {
 			setOpen(false)
@@ -141,32 +51,8 @@ const Project = ({ byline }) => {
 		}
 	}
 
-	const executeScroll = () => myRef.current.scrollIntoView({ behavior: "smooth" })
-
 	useEffect(() => {
-		const moveCursor = (e) => {
-			if (e.clientY > screenSize.height * 0.8) {
-				if (e.clientX > 100) {
-					cursorX.set(e.clientX - 100)
-				}
-				if (e.clientX < 100) {
-					cursorX.set(0)
-				}
-				if (e.clientX > screenSize.width - 250) {
-					cursorX.set(screenSize.width - 250)
-				}
-			} else {
-				cursorX.set(screenSize.width / 2 - 100)
-			}
-		}
 
-		console.log(height)
-
-		window.addEventListener("mousemove", moveCursor)
-
-		return () => {
-			window.removeEventListener("mousemove", moveCursor)
-		}
 	}, [])
 
 	return (
@@ -174,13 +60,17 @@ const Project = ({ byline }) => {
 			<div className="grid grid-cols-12 gap-x-3 px-7">
 				<div className="col-span-10">
 					<p className="font-['hl'] font-light mb-16 text-[140px] leading-[1]">
-						{byline} <span className="font-['s'] text-xl">NBA All-Star Vote</span>
+						{content.frontmatter.title}{" "}
+						<span className="font-['s'] text-xl">{content.frontmatter.project}</span>
 					</p>
 				</div>
 			</div>
 
 			<div className="relative">
-				<div className="absolute z-30 top-20 left-0 w-full pointer-events-none" style={{height: "calc(100% - 7rem)"}}>
+				<div
+					className="absolute z-30 top-20 left-0 w-full pointer-events-none"
+					style={{ height: "calc(100% - 7rem)" }}
+				>
 					<div className="w-full sticky top-20 left-0 grid grid-cols-12 gap-x-3 px-7 box-border">
 						<div className="col-span-1 col-start-12 pl-3">
 							<div
@@ -190,22 +80,22 @@ const Project = ({ byline }) => {
 								className="pointer-events-auto w-[70px] h-[70px] relative cursor-pointer rounded-full border flex items-center justify-center mx-auto mb-2 border-[rgba(255,255,255,0.1)] wang-jangle"
 							>
 								<motion.span
-									initial={{ opacity: 0, x:-20 }}
-									animate={tipOne ? { opacity: 1, x:0 } : { opacity: 0, x:-20 }}
-									transition={{type: "spring", bounce: 0, duration: 0.35}}
-									class="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
+									initial={{ opacity: 0, x: -20 }}
+									animate={tipOne ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+									transition={{ type: "spring", bounce: 0, duration: 0.35 }}
+									className="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
 								>
 									{throttledValue ? "hide details" : "see details"}
 								</motion.span>
 								{throttledValue && (
-									<span class="material-symbols-outlined pointer-events-none">
+									<span className="material-symbols-outlined pointer-events-none" style={{fontSize: "40px"}}>
 										close_small
 									</span>
 								)}
 								{!throttledValue && (
 									<span
-										class="material-symbols-outlined pointer-events-none"
-										style={{ transform: "rotate(180deg)" }}
+										className="material-symbols-outlined pointer-events-none"
+										style={{ transform: "rotate(180deg)", fontSize: "40px" }}
 									>
 										read_more
 									</span>
@@ -217,15 +107,15 @@ const Project = ({ byline }) => {
 								className="pointer-events-auto w-[70px] h-[70px] relative cursor-pointer rounded-full border flex items-center justify-center mx-auto border-[rgba(255,255,255,0.1)] wang-jangle"
 							>
 								<motion.span
-									initial={{ opacity: 0, x:-20 }}
-									animate={tipTwo ? { opacity: 1, x:0 } : { opacity: 0, x:-20 }}
-									transition={{type: "spring", bounce: 0, duration: 0.35}}
-									class="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
+									initial={{ opacity: 0, x: -20 }}
+									animate={tipTwo ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+									transition={{ type: "spring", bounce: 0, duration: 0.35 }}
+									className="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
 								>
 									see live
 								</motion.span>
 								<span
-									class="material-symbols-outlined"
+									className="material-symbols-outlined"
 									style={{ fontSize: "32px" }}
 								>
 									arrow_outward
@@ -234,36 +124,32 @@ const Project = ({ byline }) => {
 						</div>
 					</div>
 				</div>
-				<InView
-					rootMargin="-95% -50% -5% -50%"
-					as="div"
-					className="relative mx-7"
-					onChange={(inView, entry) => {
-						setVisibleButton(inView)
-					}}
-				>
+				<div className="relative mx-7">
 					<div className="w-full grid grid-cols-12 gap-x-3" ref={myRef}>
 						<div className="col-span-11 z-10 pointer-events-none">
-							<ImgScale size="100%" value={throttledValue}>
-								<img className="w-full rounded mb-3" src={Cloud} />
-							</ImgScale>
-
-							<ImgScale size="70%" value={throttledValue} grid={true}>
-								<img className="grid-span-1 rounded mb-3" src={Gold} />
-								<img className="grid-span-1 rounded mb-3" src={Sky} />
-							</ImgScale>
-
-							<ImgScale size="80%" value={throttledValue}>
-								<img className="w-full rounded mb-3" src={Forest} />
-							</ImgScale>
-
-							<ImgScale size="90%" value={throttledValue}>
-								<img className="w-full rounded mb-3" src={Gold} />
-							</ImgScale>
-
-							<ImgScale size="80%" value={throttledValue}>
-								<img className="w-full rounded mb-3" src={Sky} />
-							</ImgScale>
+							{content.frontmatter.assets.map((i) => {
+								
+								return (
+									<ImgScale
+										size={i.size}
+										grid={i.image.length > 1 ? true : false}
+										value={throttledValue}
+									>
+										{i.image.map((j) => {
+											const g = getImage(j)
+											return (
+												<>
+													<GatsbyImage
+														image={g}
+														className="rounded mb-3"
+														alt=""
+													/>
+												</>
+											)
+										})}
+									</ImgScale>
+								)
+							})}
 						</div>
 					</div>
 					<div className="h-full w-full grid grid-cols-12 gap-x-3 absolute top-0 right-0">
@@ -277,88 +163,12 @@ const Project = ({ byline }) => {
 									variants={copyEffect}
 									initial="visible"
 									animate={throttledValue ? "visible" : "hidden"}
-								>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Integer ultrices est pharetra ultrices tempor. Etiam eget
-										felis ligula. Integer tristique blandit egestas. Phasellus
-										pellentesque nec quam id aliquam.
-									</p>
-
-									<p>
-										Duis pulvinar ligula eget nulla tincidunt, eget maximus
-										velit luctus. Aenean ac euismod tortor. Morbi lacus nisl,
-										sollicitudin eget hendrerit sed, volutpat sed elit. Vivamus
-										turpis nisl, vulputate ac sem non, posuere dapibus orci.
-									</p>
-
-									<p>
-										Donec nec ante blandit, vestibulum velit non, semper metus.
-										Curabitur scelerisque lorem vel feugiat pharetra. Integer
-										rhoncus massa a blandit semper. In nunc lacus, molestie nec
-										turpis id, suscipit auctor sem.
-									</p>
-
-									<p>
-										Etiam efficitur laoreet lorem, non vestibulum nulla posuere
-										sed. Nam convallis orci urna, nec sodales ex fringilla sit
-										amet. Nulla eget nunc facilisis, elementum eros quis,
-										suscipit nibh.
-									</p>
-
-									<p>
-										In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
-										Maecenas vestibulum justo eu metus efficitur, vitae accumsan
-										ligula imperdiet. Sed a urna lorem. Cras et lectus sed
-										lectus rutrum accumsan.
-									</p>
-
-									<p>
-										Etiam efficitur laoreet lorem, non vestibulum nulla posuere
-										sed. Nam convallis orci urna, nec sodales ex fringilla sit
-										amet. Nulla eget nunc facilisis, elementum eros quis,
-										suscipit nibh.
-									</p>
-
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Integer ultrices est pharetra ultrices tempor. Etiam eget
-										felis ligula. Integer tristique blandit egestas. Phasellus
-										pellentesque nec quam id aliquam.
-									</p>
-
-									<p>
-										In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
-										Maecenas vestibulum justo eu metus efficitur, vitae accumsan
-										ligula imperdiet. Sed a urna lorem. Cras et lectus sed
-										lectus rutrum accumsan.
-									</p>
-
-									<p>
-										Etiam efficitur laoreet lorem, non vestibulum nulla posuere
-										sed. Nam convallis orci urna, nec sodales ex fringilla sit
-										amet. Nulla eget nunc facilisis, elementum eros quis,
-										suscipit nibh.
-									</p>
-
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Integer ultrices est pharetra ultrices tempor. Etiam eget
-										felis ligula. Integer tristique blandit egestas. Phasellus
-										pellentesque nec quam id aliquam.
-									</p>
-
-									<p>
-										In hendrerit et diam vitae tincidunt. Nunc a dui mauris.
-										Maecenas vestibulum justo eu metus efficitur, vitae accumsan
-										ligula imperdiet. Sed a urna lorem. Cras et lectus sed
-										lectus rutrum accumsan.
-									</p>
-								</motion.div>
+									dangerouslySetInnerHTML={{ __html: content.body }}
+								></motion.div>
 							</div>
 						</div>
 					</div>
-				</InView>
+				</div>
 			</div>
 		</section>
 	)

@@ -266,6 +266,37 @@ module.exports = {
 			__key: "images",
 		},
 		{
+			resolve: `gatsby-plugin-mdx`,
+			options: {
+				mdxOptions: {},
+				gatsbyRemarkPlugins: [
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							maxWidth: 2500,
+							linkImagesToOriginal: false,
+							withWebp: true,
+							loading: "eager",
+						},
+					},
+				],
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `./src/content/`,
+				name: `content`,
+			},
+			__key: "content",
+		},
+		{
+            resolve: "gatsby-remark-normalize-paths",
+            options: {
+              pathFields: ["image"],
+            },
+          },
+		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
 				icon: "src/images/icon.png",

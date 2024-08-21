@@ -1,16 +1,17 @@
 import React from "react"
 import { motion } from "framer-motion"
 
-const ImgScale = ({ children, size = "100%", value = false, grid= false }) => {
+const ImgScale = ({ children, size = 100, value = false, grid= false }) => {
+
 	return (
 		<motion.div
-			initial={{ maxWidth: size }}
+			initial={{ width: size }}
 			transition={{
 				type: "spring",
 				bounce: 0,
 			}}
 			className={grid ? "grid grid-cols-2 gap-x-3 pointer-events-auto" : "pointer-events-auto"}
-			animate={value ? { maxWidth: "54.5454545454%" } : { maxWidth: size }}
+			animate={value ? { width: "54.5454545454%" } : { width: size + "%" }}
 		>
 			{children}
 		</motion.div>
