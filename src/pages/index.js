@@ -1,57 +1,60 @@
-import React, { } from "react"
+import React from "react"
 import { graphql } from "gatsby"
+import { motion } from "framer-motion"
 
 import Nav from "../components/nav"
+import Footer from "../components/footer"
 import Project from "../components/project"
+import { Header } from "../components/header"
 
 const Index = ({ data }) => {
 	return (
 		<>
-			<Nav></Nav>
-			<header className="h-[120vh] py-7">
-				<div className="grid grid-cols-12 gap-x-7 px-7">
+			<Nav page="/about" isHome={true} />
+			<header className="pt-[100px] relative overflow-hidden">
+				<motion.div
+					initial={{ left: 0 }}
+					exit={{
+						left: "-100vw",
+						transition: { type: "spring", bounce: 0, duration: 0.5 },
+					}}
+					className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-7"
+				>
 					<div className="col-span-10">
-						<p className="font-['hl'] font-light text-[140px] leading-[1.1]">
+						<h2 className="font-['hl'] font-light text-[140px] leading-[1.1]">
 							A strategically-minded designer helping teams plan and build innovative
 							digital products.{" "}
-							<span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] border-solid">
+							<span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
 								more +
 							</span>
-						</p>
+						</h2>
 					</div>
-				</div>
+				</motion.div>
+				<motion.div
+					className="w-full h-full absolute top-0 bg-[#51AFE3]"
+					initial={{ left: "100vw" }}
+					exit={{ left: "0vw", transition: { type: "spring", bounce: 0, duration: 0.5 } }}
+				></motion.div>
 			</header>
-			{/* {data.allMdx.edges.map(({ node }, i) => {
-				return (
-					<>
-						<div dangerouslySetInnerHTML={{ __html: node.body }} />
-					</>
-				)
-			})} */}
 			<main>
 				{data.allMdx.edges.map(({ node }, i) => {
-					return(
-						<Project content={node} />
-					)
+					return <Project content={node} />
 				})}
 
 				<div className="h-screen"></div>
 			</main>
-			<footer></footer>
+			<Footer />
 		</>
 	)
 }
 
-export const Head = () => (
-	<>
-		<html lang="en" prefix="og: http://ogp.me/ns#" />
-		<title>Dan Nanasi</title>
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-		/>
-	</>
-)
+export const Head = ({ data }) => {
+	return (
+		<>
+			<Header data={data} />
+		</>
+	)
+}
 
 export const query = graphql`
 	query MyQuery {
@@ -70,11 +73,16 @@ export const query = graphql`
 					frontmatter {
 						title
 						project
+						link
 						assets {
 							image {
 								childImageSharp {
-									gatsbyImageData(layout:FULL_WIDTH, formats: WEBP, webpOptions: {quality: 100})
-								  }
+									gatsbyImageData(
+										layout: FULL_WIDTH
+										formats: WEBP
+										webpOptions: { quality: 100 }
+									)
+								}
 							}
 							size
 						}

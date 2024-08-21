@@ -59,10 +59,10 @@ const Project = ({ byline, children, content }) => {
 		<section className="relative">
 			<div className="grid grid-cols-12 gap-x-3 px-7">
 				<div className="col-span-10">
-					<p className="font-['hl'] font-light mb-16 text-[140px] leading-[1]">
+					<h2 className="font-['hl'] font-light mb-16 text-[140px] leading-[1]">
 						{content.frontmatter.title}{" "}
-						<span className="font-['s'] text-xl">{content.frontmatter.project}</span>
-					</p>
+						<span className="font-['i'] text-[21px] tracking-normal">{content.frontmatter.project}</span>
+					</h2>
 				</div>
 			</div>
 
@@ -73,7 +73,7 @@ const Project = ({ byline, children, content }) => {
 				>
 					<div className="w-full sticky top-20 left-0 grid grid-cols-12 gap-x-3 px-7 box-border">
 						<div className="col-span-1 col-start-12 pl-3">
-							<div
+							<button
 								onClick={doTheThing}
 								onMouseOver={() => setTipOne(true)}
 								onMouseOut={() => setTipOne(false)}
@@ -100,8 +100,9 @@ const Project = ({ byline, children, content }) => {
 										read_more
 									</span>
 								)}
-							</div>
-							<div
+							</button>
+							{ content.frontmatter.link != "none" && 
+								<a href={content.frontmatter.link}
 								onMouseOver={() => setTipTwo(true)}
 								onMouseOut={() => setTipTwo(false)}
 								className="pointer-events-auto w-[70px] h-[70px] relative cursor-pointer rounded-full border flex items-center justify-center mx-auto border-[rgba(255,255,255,0.1)] wang-jangle"
@@ -120,7 +121,9 @@ const Project = ({ byline, children, content }) => {
 								>
 									arrow_outward
 								</span>
-							</div>
+							</a>
+							}
+							
 						</div>
 					</div>
 				</div>
@@ -155,7 +158,7 @@ const Project = ({ byline, children, content }) => {
 					<div className="h-full w-full grid grid-cols-12 gap-x-3 absolute top-0 right-0">
 						<div className="relative col-span-4 col-start-8">
 							<div
-								className="sticky py-20 pr-10"
+								className="sticky py-20 pl-10 pr-20"
 								style={{ top: (height - screenSize.height) * -1 }}
 								ref={thingyRef}
 							>

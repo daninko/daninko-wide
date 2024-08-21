@@ -1,9 +1,11 @@
-// import React from "react"
-// import { AnimatePresence } from "framer-motion"
+import React from "react"
+import { AnimatePresence } from "framer-motion"
+import "./src/styles/global.css"
 
-// export const wrapPageElement = ({ element }) => (
-// 	// <AnimatePresence exitBeforeEnter>{element}</AnimatePresence>
-// 	<AnimatePresence mode="wait">{element}</AnimatePresence>
-// )
+export const wrapPageElement = ({ element }) => (
+	<AnimatePresence mode="wait">{element}</AnimatePresence>
+)
 
-import './src/styles/global.css'
+export const shouldUpdateScroll = () => {
+	return false
+  }

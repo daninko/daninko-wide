@@ -46,8 +46,6 @@
 		font-kerning: normal;
 		font-size: 18px;
 		-webkit-font-smoothing: antialiased;
-		/* font-feature-settings: "ss01" on, "ss05" on, "ss07" on, "ss09" on, "ss04" on, "ss06" on,
-			"ss03" on; */
 	}
 
 	.material-symbols-outlined {
@@ -69,22 +67,18 @@
 
 	h1 {
 		@apply text-display-2 pb-u-1 leading-0-95 tracking-tight;
-		font-variation-settings: "wght" 500, "wdth" 100;
 	}
 
 	h2 {
-		@apply text-display-1 pt-u-1 pb-u-8 lg:pb-u-8 tracking-tight;
-		font-variation-settings: "wght" 500, "wdth" 100;
+		@apply text-xl tracking-tight;
 	}
 
 	h3 {
-		@apply text-body-1 mb-p-bottom;
-		font-variation-settings: "wght" 500, "wdth" 100;
+		@apply text-4xl pb-8 tracking-tight;
 	}
 
 	h4 {
-		@apply text-body-2 pb-2 lg:mb-5;
-		font-variation-settings: "wght" 500, "wdth" 100;
+		@apply text-[22px] pt-4;
 	}
 
 	h6 {
@@ -92,7 +86,7 @@
 	}
 
 	p {
-		@apply text-xl mb-p-bottom max-w-[55ch];
+		@apply text-[22px] mb-p-bottom pb-4 max-w-[55ch] opacity-60 tracking-normal;
 	}
 
 	img {
@@ -133,10 +127,6 @@
 
 	.outcome-image {
 		@apply block absolute aspect-square w-2/5 lg:w-1/2 top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4;
-	}
-
-	.switch[data-isOn="true"] {
-		justify-content: flex-end;
 	}
 
 	.fade-in {
