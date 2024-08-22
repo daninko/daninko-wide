@@ -1,6 +1,6 @@
 import React from "react"
 
-const Footer = () => {
+const Footer = ({data}) => {
 	return (
 		<footer>
 			<div className="grid grid-cols-12 px-7 pb-[200px]">

@@ -10,11 +10,53 @@ module.exports = {
 		url: `https://dannanasi.ca`,
 		locale: `en_CA`,
 		description: `Dan Nanasi is a Product Designer who works with teams in planning and developing innovative digital products and experiences.`,
-		home: {
-			status: `Currently #opentowork`,
-			top: `Product Design. UX Strategy.`,
-			bottom: `Inquiring. Learning. Iterating. Challenging. Building for people. Making it fun. Inclusive. Purposeful. Impactful.`,
-		},
+		position: 'Product Designer at Microsoft',
+		homeHeadline: "A strategically-minded designer helping teams plan and build innovative digital products.",
+		contactMethods: [
+			{
+				text: "linkedin/daninko",
+				link: "https://linkedin.com/in/daninko"
+			},
+			{
+				text: "hi@dannanasi.ca",
+				link: "mailto:hi@dannanasi.ca"
+			}
+		],
+		about: [
+			{
+				text: "Not just any Dan"
+			},
+			{
+				text: "Musician"
+			},
+			{
+				text: "Gamer"
+			},
+			{
+				text: "Active(ish)"
+			},
+			{
+				text: "Audiophile"
+			},
+			{
+				text: "MK enthusiast"
+			},
+			{
+				text: "Cat dad"
+			},
+			{
+				text: "Deadpan"
+			},
+			{
+				text: "Introvert"
+			},
+			{
+				text: "Tea > coffee"
+			},
+			{
+				text: "Mexican food ❤️"
+			},			
+		],
 		experiences: [
 			{
 				title: "Strategist → Sr Product Designer",
@@ -80,7 +122,6 @@ module.exports = {
 			{
 				item: "Cross-discipline collaboration",
 			},
-		
 		],
 		brands: [
 			{
@@ -135,81 +176,12 @@ module.exports = {
 				item: "TuGo",
 			},
 		],
-		hallmarks: [
-			{
-				client: "Adidas",
-				desc: "Designed a research app to help Adidas' experts better understand the behaviours and patterns of college athletes.",
-			},
-			{
-				client: "Air Jordan",
-				desc: "For the Jordan brand's 23rd anniversary, created a prototype dribbling and footwork experience based around the close connection between hip hop and sport.",
-			},
-			{
-				client: "Autodesk",
-				desc: "Helped Autodesk understand its customer's behavior and propose what the future of ecommerce could be as part of a new transaction model.",
-			},
-			{
-				client: "CVS Health",
-				desc: "Enabled patients to recover quicker with a digital post-acute care recovery solution connecting them with healthcare resources and professionals.",
-			},
-			{
-				client: "NBA Cares",
-				desc: "Brought to life the NBA's rich history of social activism through a new online platform.",
-				link: "https://cares.nba.com"
-			},
-			{
-				client: "DIRECTV",
-				desc: "Created a new shared enter1nment viewing experience putting the ephemerality of live content at the forefront.",
-			},
-			{
-				client: "Ocean Wise",
-				desc: "Developed a mobile-first content creation platform with Ocean Wise to help them to connect with the next generation of ocean conservationists.",
-				link: "https://ocean.org"
-			},
-			{
-				client: "Roadtrip Nation",
-				desc: "Helped career seekers better understand the value proposition of RTN and its career finding tools through a new marketing site.",
-				link: "https://roadtripnation.com"
-			},
-			{
-				client: "BC Hydro",
-				desc: "Designed and provided ongoing optimization to interactive learning tools for teachers educating their students about energy conservation.",
-				link: "https://schools.bchydro.com"
-			},
-			{
-				client: "Fiserv",
-				desc: "Redesigned the core card management product for the largest Fintech company you've probably never heard of.",
-			},
-			{
-				client: "Coast Capital Savings",
-				desc: "Prototyped a financial planning app to help customers understand their financial status and products available to them.",
-			},
-			{
-				client: "Loloi Rugs",
-				desc: "Optimized a unique B2B ecommerce experience to help interior designers find and order expertly crafted rugs.",
-				link: "https://loloirugs.com"
-			},
-		],
-		about: {
-			top: `Not just any Dan. Bassist. Guitarist. Gamer. Audiophile. Keyboard & SFF nerd. Cat dad. Dry witted. Off-beat. Deadpan. Introvert. Tea drinker. Swimmer. Mexican and Korean cuisine advocate. Hot sauce on everything.`,
-			bottom: ``,
-		},
-		password: `roadtrip-rootbeer`,
-		social: [
-			{
-				platform: "Linkedin",
-				url: "https://www.linkedin.com/in/daninko/",
-			},
-			{
-				platform: "Read.cv",
-				url: "https://read.cv/dan.nanasi/",
-			},
-		],
+
 	},
 	plugins: [
 		`gatsby-plugin-sass`,
 		`gatsby-plugin-image`,
-		'gatsby-plugin-postcss',
+		"gatsby-plugin-postcss",
 		{
 			resolve: "gatsby-plugin-mdx",
 			options: {},
@@ -291,11 +263,11 @@ module.exports = {
 			__key: "content",
 		},
 		{
-            resolve: "gatsby-remark-normalize-paths",
-            options: {
-              pathFields: ["image"],
-            },
-          },
+			resolve: "gatsby-remark-normalize-paths",
+			options: {
+				pathFields: ["image"],
+			},
+		},
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {

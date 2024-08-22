@@ -8,9 +8,10 @@ import Project from "../components/project"
 import { Header } from "../components/header"
 
 const Index = ({ data }) => {
+	console.log(data)
 	return (
 		<>
-			<Nav page="/about" isHome={true} />
+			<Nav page="/about" isHome={true} data={data} />
 
 			<main>
 				<header className="pt-[100px] relative overflow-hidden">
@@ -24,8 +25,7 @@ const Index = ({ data }) => {
 					>
 						<div className="col-span-10">
 							<motion.h2 initial={{opacity: 0, y: "1rem"}} animate={{opacity: 1, y: "0rem"}} className="font-['hl'] font-light text-[140px] leading-[1.1]">
-								A strategically-minded designer helping teams plan and build
-								innovative digital products.{" "}
+								{data.site.siteMetadata.homeHeadline}{" "}
 								<span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
 									more +
 								</span>
@@ -68,6 +68,12 @@ export const query = graphql`
 				description
 				url
 				author
+				position
+				homeHeadline
+				contactMethods {
+					text
+					link
+				}
 			}
 		}
 		allMdx {

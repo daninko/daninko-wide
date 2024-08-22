@@ -19,7 +19,7 @@ const AboutHover = ({ children }) => {
 			<motion.span
 				className="z-10 relative block"
 				initial={{opacity: 0.5, y: "1rem"}}
-				animate={{y: "0rem", opacity: inTarget ? 1 : 0.3}}
+				animate={{y: "0rem", opacity: inTarget ? 1 : 0.2}}
 			>
 				{children}
 			</motion.span>

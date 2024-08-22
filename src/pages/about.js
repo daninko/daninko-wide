@@ -11,7 +11,7 @@ const About = ({ data }) => {
 	return (
 		<>
 			<div style={{ minHeight: "100vh" }} className="bg-[#3C4941]">
-				<Nav page="/" isHome={false} />
+				<Nav page="/" isHome={false} data={data} />
 				<main>
 					<header className="relative overflow-hidden">
 						<motion.div
@@ -25,17 +25,9 @@ const About = ({ data }) => {
 						>
 							<div className="px-7">
 								<ul className="text-[120px] font-['hl'] leading-[1.1]" style={{paddingTop: "calc(50vh - 70px)"}}>
-									<AboutHover>Not just any Dan</AboutHover>
-									<AboutHover>Musician</AboutHover>
-									<AboutHover>Gamer</AboutHover>
-									<AboutHover>Active(ish)</AboutHover>
-									<AboutHover>Audiophile</AboutHover>
-									<AboutHover>MK enthusiast</AboutHover>
-									<AboutHover>Cat dad</AboutHover>
-									<AboutHover>Deadpan</AboutHover>
-									<AboutHover>Introvert</AboutHover>
-									<AboutHover>Tea > coffee</AboutHover>
-									<AboutHover>Mexican food ❤️</AboutHover>
+									{data.site.siteMetadata.about.map((node) => (
+										<AboutHover>{node.text}</AboutHover>
+									))}
 								</ul>
 							</div>
 						</motion.div>
@@ -50,7 +42,7 @@ const About = ({ data }) => {
 						</motion.div>
 					</header>
 				</main>
-				<Footer />
+				<Footer data={data} />
 			</div>
 		</>
 	)
@@ -72,6 +64,15 @@ export const query = graphql`
 				description
 				url
 				author
+				position
+				homeHeadline
+				contactMethods {
+					text
+					link
+				}
+				about {
+					text
+				}
 			}
 		}
 	}

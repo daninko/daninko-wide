@@ -1,25 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
-const Nav = ({ page = "/", isHome = true }) => {
-	const toAboutTrans = {
-		initial: {
-			justifyContent: "start",
-		},
-		trans: {
-			justifyContent: "end",
-		},
-	}
-
-	const toHomeTrans = {
-		initial: {
-			justifyContent: "end",
-		},
-		trans: {
-			justifyContent: "start",
-		},
-	}
+const Nav = ({ page = "/", isHome = true, data }) => {
 
 	return (
 		<nav className="mx-[30px] absolute top-0 left-0 right-0" style={{zIndex: 500}}>
@@ -72,15 +55,16 @@ const Nav = ({ page = "/", isHome = true }) => {
 					</Link>
 				</div>
 				<div className="col-span-2 py-[30px]">
-					<span className="block text-lg leading-normal">Dan Nanasi</span>
+					<span className="block text-lg leading-normal">{data.site.siteMetadata.author}</span>
 					<span className="block opacity-50 text-lg leading-normal">
-						Product Designer at Microsoft
+						{data.site.siteMetadata.position}
 					</span>
 				</div>
 				<div className="col-span-7"></div>
 				<div className="col-span-1 text-lg py-[30px]">
-					<span className="block text-lg leading-normal">linkedin/daninko</span>
-					<span className="block text-lg leading-normal">hi@dannanasi.ca</span>
+					{data.site.siteMetadata.contactMethods.map((g) =>(
+						<Link to={g.link} className="block text-lg leading-normal">{g.text}</Link>
+					))}
 				</div>
 			</div>
 		</nav>
