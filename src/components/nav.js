@@ -22,7 +22,7 @@ const Nav = ({ page = "/", isHome = true }) => {
 	}
 
 	return (
-		<nav className="mx-[30px] absolute top-0 left-0 w-full" style={{zIndex: 500}}>
+		<nav className="mx-[30px] absolute top-0 left-0 right-0" style={{zIndex: 500}}>
 			<div className="grid grid-cols-12">
 				<div className="col-span-2">
 					<Link
