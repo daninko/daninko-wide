@@ -1,6 +1,4 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import { motion } from "framer-motion"
 
 export const Header = ({ data }) => {
 	return (
@@ -14,6 +12,8 @@ export const Header = ({ data }) => {
 				property="og:description"
 				content={data.site.siteMetadata.description}
 			/>
+
+			<meta name="viewport" content="width=device-width, maximum-scale=1.0, initial_scale=1.0" />
 
 			<meta name="og:type" content="website" />
 			<meta name="og:url" content={data.site.siteMetadata.url} />

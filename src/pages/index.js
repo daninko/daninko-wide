@@ -24,12 +24,14 @@ const Index = ({ data }) => {
 						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-7"
 					>
 						<div className="col-span-10">
-							<motion.h2 initial={{opacity: 0, y: "1rem"}} animate={{opacity: 1, y: "0rem"}} className="font-['hl'] font-light text-[140px] leading-[1.1]">
+							<h2
+								className="font-['hl'] font-light text-[140px] leading-[1.1]"
+							>
 								{data.site.siteMetadata.homeHeadline}{" "}
 								<span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
 									more +
 								</span>
-							</motion.h2>
+							</h2>
 						</div>
 					</motion.div>
 					<motion.div
@@ -39,7 +41,23 @@ const Index = ({ data }) => {
 							left: "0vw",
 							transition: { type: "spring", bounce: 0, duration: 0.5 },
 						}}
-					></motion.div>
+					>
+						<div className="px-7">
+							<ul
+								className="text-[120px] font-['hl'] leading-[1.1]"
+								style={{ paddingTop: "calc(50vh - 70px)" }}
+							>
+								{data.site.siteMetadata.about.map(({node}, i) => (
+									<motion.span
+										className="z-10 relative block"
+										style={{opacity: i===0 ? 1 : 0.2}}
+									>
+										{ data.site.siteMetadata.about[i].text }
+									</motion.span>
+								))}
+							</ul>
+						</div>
+					</motion.div>
 				</header>
 				{data.allMdx.edges.map(({ node }, i) => {
 					return <Project content={node} />
@@ -73,6 +91,9 @@ export const query = graphql`
 				contactMethods {
 					text
 					link
+				}
+				about {
+					text
 				}
 			}
 		}

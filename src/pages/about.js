@@ -16,7 +16,7 @@ const About = ({ data }) => {
 					<header className="relative overflow-hidden">
 						<motion.div
 							className="w-full relative bg-[#3C4941]"
-							style={{minHeight: "100vh"}}
+							style={{ minHeight: "100vh" }}
 							initial={{ left: "0vw" }}
 							exit={{
 								left: "100vw",
@@ -24,9 +24,14 @@ const About = ({ data }) => {
 							}}
 						>
 							<div className="px-7">
-								<ul className="text-[120px] font-['hl'] leading-[1.1]" style={{paddingTop: "calc(50vh - 70px)"}}>
-									{data.site.siteMetadata.about.map((node) => (
-										<AboutHover>{node.text}</AboutHover>
+								<ul
+									className="text-[120px] font-['hl'] leading-[1.1]"
+									style={{ paddingTop: "calc(50vh - 70px)" }}
+								>
+									{data.site.siteMetadata.about.map(({ node }, i) => (
+										<AboutHover slightFade={i === 0}>
+											{data.site.siteMetadata.about[i].text}
+										</AboutHover>
 									))}
 								</ul>
 							</div>
@@ -39,6 +44,14 @@ const About = ({ data }) => {
 							}}
 							className="h-full absolute pt-[100px] top-0 w-screen box-border pb-[95vh] grid grid-cols-12 gap-x-7 px-7 bg-[#1a1d1f]"
 						>
+							<div className="col-span-10">
+								<h2 className="font-['hl'] font-light text-[140px] leading-[1.1]">
+									{data.site.siteMetadata.homeHeadline}{" "}
+									<span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
+										more +
+									</span>
+								</h2>
+							</div>
 						</motion.div>
 					</header>
 				</main>

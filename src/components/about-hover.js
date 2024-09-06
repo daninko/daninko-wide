@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import { InView } from "react-intersection-observer"
 import { motion } from "framer-motion"
 
-const AboutHover = ({ children }) => {
+const AboutHover = ({ children, slightFade = true }) => {
 	const [inTarget, setInTarget] = useState(false)
 	return (
 		<InView
@@ -18,8 +18,8 @@ const AboutHover = ({ children }) => {
 			</div>
 			<motion.span
 				className="z-10 relative block"
-				initial={{opacity: 0.5, y: "1rem"}}
-				animate={{y: "0rem", opacity: inTarget ? 1 : 0.2}}
+				initial={{opacity: slightFade ? 1 : 0.2}}
+				animate={{opacity: inTarget ? 1 : 0.2}}
 			>
 				{children}
 			</motion.span>

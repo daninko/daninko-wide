@@ -101,7 +101,7 @@ const Project = ({ byline, children, content }) => {
 									</span>
 								)}
 							</button>
-							{ content.frontmatter.link != "none" && 
+							{ content.frontmatter.link !== "none" && 
 								<a href={content.frontmatter.link}
 								onMouseOver={() => setTipTwo(true)}
 								onMouseOut={() => setTipTwo(false)}
