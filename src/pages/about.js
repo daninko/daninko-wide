@@ -28,11 +28,22 @@ const About = ({ data }) => {
 									className="text-[120px] font-['hl'] leading-[1.1]"
 									style={{ paddingTop: "calc(50vh - 70px)" }}
 								>
-									{data.site.siteMetadata.about.map(({ node }, i) => (
-										<AboutHover slightFade={i === 0}>
-											{data.site.siteMetadata.about[i].text}
-										</AboutHover>
-									))}
+									{data.mdx.frontmatter.content.map(
+										({ node }, i) => (
+											<AboutHover
+												slightFade={i === 0}
+												image={
+													data.mdx.frontmatter.content[i]
+														.image
+												}
+											>
+												{
+													data.mdx.frontmatter.content[i]
+														.text
+												}
+											</AboutHover>
+										)
+									)}
 								</ul>
 							</div>
 						</motion.div>
@@ -73,17 +84,31 @@ export const query = graphql`
 	query MyQuery {
 		site {
 			siteMetadata {
-				title
-				description
-				url
 				author
+				description
+				title
+				url
 				position
 				homeHeadline
 				contactMethods {
-					text
 					link
+					text
 				}
-				about {
+			}
+		}
+		mdx(frontmatter: {collection: {eq: "about"}}) {
+			id
+			frontmatter {
+				content {
+					image {
+						childImageSharp {
+							gatsbyImageData(
+								layout: FULL_WIDTH
+								formats: WEBP
+								webpOptions: { quality: 100 }
+							)
+						}
+					}
 					text
 				}
 			}

@@ -24,9 +24,7 @@ const Index = ({ data }) => {
 						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-7"
 					>
 						<div className="col-span-10">
-							<h2
-								className="font-['hl'] font-light text-[140px] leading-[1.1]"
-							>
+							<h2 className="font-['hl'] font-light text-[140px] leading-[1.1]">
 								{data.site.siteMetadata.homeHeadline}{" "}
 								<span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
 									more +
@@ -47,12 +45,12 @@ const Index = ({ data }) => {
 								className="text-[120px] font-['hl'] leading-[1.1]"
 								style={{ paddingTop: "calc(50vh - 70px)" }}
 							>
-								{data.site.siteMetadata.about.map(({node}, i) => (
+								{data.mdx.frontmatter.content.map(({ node }, i) => (
 									<motion.span
 										className="z-10 relative block"
-										style={{opacity: i===0 ? 1 : 0.2}}
+										style={{ opacity: i === 0 ? 1 : 0.2 }}
 									>
-										{ data.site.siteMetadata.about[i].text }
+										{data.mdx.frontmatter.content[i].text}
 									</motion.span>
 								))}
 							</ul>
@@ -82,29 +80,23 @@ export const query = graphql`
 	query MyQuery {
 		site {
 			siteMetadata {
-				title
-				description
-				url
 				author
+				description
+				title
+				url
 				position
 				homeHeadline
 				contactMethods {
-					text
 					link
-				}
-				about {
 					text
 				}
 			}
 		}
-		allMdx {
+		allMdx(filter: { frontmatter: { collection: { eq: "projects" } } }) {
 			edges {
 				node {
 					body
 					frontmatter {
-						title
-						project
-						link
 						assets {
 							image {
 								childImageSharp {
@@ -117,7 +109,18 @@ export const query = graphql`
 							}
 							size
 						}
+						title
+						project
+						link
 					}
+				}
+			}
+		}
+		mdx(frontmatter: {collection: {eq: "about"}}) {
+			id
+			frontmatter {
+				content {
+					text
 				}
 			}
 		}
