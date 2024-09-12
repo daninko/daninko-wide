@@ -63,7 +63,7 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 				<div className="col-span-7"></div>
 				<div className="col-span-1 text-lg py-[30px]">
 					{data.site.siteMetadata.contactMethods.map((g) =>(
-						<Link to={g.link} className="block text-lg leading-normal">{g.text}</Link>
+						<motion.a initial={{opacity: 1}} transition={{duration: 0.15}} whileHover={{opacity:0.5}} href={g.link} className="block text-lg leading-normal">{g.text}</motion.a>
 					))}
 				</div>
 			</div>

@@ -56,7 +56,7 @@ const Project = ({ byline, children, content }) => {
 	}, [])
 
 	return (
-		<section className="relative">
+		<section className="relative mb-[750px]">
 			<div className="grid grid-cols-12 gap-x-3 px-7">
 				<div className="col-span-10">
 					<h2 className="font-['hl'] font-light mb-16 text-[140px] leading-[1]">
