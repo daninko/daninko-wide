@@ -8,7 +8,7 @@ const AboutHover = ({ children, slightFade = true, image }) => {
 	const theImage = getImage(image)
 	return (
 		<InView
-			rootMargin="-50% -50% -50% -50%"
+			rootMargin="-50% 0% -50% 0%"
 			as="li"
 			className=""
 			onChange={(inView, entry) => {
