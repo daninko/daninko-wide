@@ -23,10 +23,10 @@ const Index = ({ data }) => {
 						}}
 						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-7"
 					>
-						<div className="col-span-10">
-							<h2 className="font-['hl'] font-light text-[140px] leading-[1.1]">
+						<div className="col-span-12">
+							<h2 className="font-medium text-[140px] leading-[1.1]">
 								{data.site.siteMetadata.homeHeadline}{" "}
-								<span className="py-1 font-['s'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
+								<span className="py-1 font-['si'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
 									more +
 								</span>
 							</h2>
@@ -98,7 +98,7 @@ export const query = graphql`
 					body
 					frontmatter {
 						assets {
-							image {
+							src {
 								childImageSharp {
 									gatsbyImageData(
 										layout: FULL_WIDTH
@@ -107,7 +107,7 @@ export const query = graphql`
 									)
 								}
 							}
-							size
+							type
 						}
 						title
 						project

@@ -22,7 +22,9 @@ module.exports = {
 			colors: {
 				"dan-white": "#f9f9f9",
 				"dan-silver": "#ededed",
-				"dan-black": "#0d0d0d"
+				"dan-black": "#0d0d0d",
+				"dan-button-bg-normal": "rgba(249,249,249,0.1)",
+				"dan-button-bg-hover": "",
 			},
 			borderRadius: {
 				"dan": "clamp(0.5rem, 0.4017946161515454rem + 0.3988035892323031vw, 1rem)",

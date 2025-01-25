@@ -11,7 +11,8 @@ module.exports = {
 		locale: `en_CA`,
 		description: `Dan Nanasi is a Product Designer who works with teams in planning and developing innovative digital products and experiences.`,
 		position: 'Product Designer at Microsoft',
-		homeHeadline: "A strategically-minded designer helping teams plan and build innovative digital products.",
+		homeHeadline: "Helping teams strategically design & build innovative digital products.",
+		// homeHeadline: "A strategically-minded designer helping teams plan and build innovative digital products.",
 		contactMethods: [
 			{
 				text: "linkedin/daninko",

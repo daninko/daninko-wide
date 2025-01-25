@@ -4,18 +4,16 @@ import useThrottle from "../hooks/throttle"
 import useSize from "@react-hook/size"
 import useScreenSize from "../hooks/useScreenSize"
 import Scrl from "scrl"
+import { ResponsiveMasonry, Masonry } from "react-responsive-masonry"
 
 import ImgScale from "./portfolio-img"
-import { getImage, GatsbyImage } from "gatsby-plugin-image"
+import { getImage, StaticImage, GatsbyImage } from "gatsby-plugin-image"
 
 const Project = ({ byline, children, content }) => {
 	const [openItem, setOpen] = useState(false)
 	const myRef = useRef(null)
 	const thingyRef = useRef(null)
 	const screenSize = useScreenSize()
-
-	const [tipOne, setTipOne] = useState(false)
-	const [tipTwo, setTipTwo] = useState(false)
 
 	const [width, height] = useSize(thingyRef)
 
@@ -42,6 +40,17 @@ const Project = ({ byline, children, content }) => {
 		},
 	}
 
+	const items = content.frontmatter.assets.map((i) => {
+		const g = getImage(i.src)
+		console.log(g)
+		return (
+			<>
+			{/* <StaticImage src="../images/cloud.png" alt="A dinosaur" /> */}
+				<GatsbyImage image={g} className="block w-full rounded mb-3" alt="" />
+			</>
+		)
+	})
+
 	const doTheThing = () => {
 		if (throttledValue) {
 			setOpen(false)
@@ -51,126 +60,75 @@ const Project = ({ byline, children, content }) => {
 		}
 	}
 
-	useEffect(() => {
-
-	}, [])
+	useEffect(() => {}, [])
 
 	return (
 		<section className="relative mb-[750px]">
 			<div className="grid grid-cols-12 gap-x-3 px-7">
 				<div className="col-span-10">
-					<h2 className="font-['hl'] font-light mb-16 text-[140px] leading-[1]">
+					<h2 className="font-['si'] font-medium mb-16 text-[76px] leading-[1]">
 						{content.frontmatter.title}{" "}
-						<span className="font-['i'] text-[21px] tracking-normal">{content.frontmatter.project}</span>
+						<span className="font-['si'] text-[18px] font-normal tracking-normal">
+							{content.frontmatter.project}
+						</span>
 					</h2>
 				</div>
 			</div>
 
 			<div className="relative">
 				<div
-					className="absolute z-30 top-20 left-0 w-full pointer-events-none"
+					className="absolute z-30 top-20 right-0 w-[230px] pointer-events-none"
 					style={{ height: "calc(100% - 7rem)" }}
 				>
-					<div className="w-full sticky top-20 left-0 grid grid-cols-12 gap-x-3 px-7 box-border">
+					<div className="w-full sticky top-20 left-0 box-border">
 						<div className="col-span-1 col-start-12 pl-3">
-							<button
-								onClick={doTheThing}
-								onMouseOver={() => setTipOne(true)}
-								onMouseOut={() => setTipOne(false)}
-								className="pointer-events-auto w-[70px] h-[70px] relative cursor-pointer rounded-full border flex items-center justify-center mx-auto mb-2 border-[rgba(255,255,255,0.1)] wang-jangle"
-							>
-								<motion.span
-									initial={{ opacity: 0, x: -20 }}
-									animate={tipOne ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-									transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-									className="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
-								>
-									{throttledValue ? "hide details" : "see details"}
-								</motion.span>
-								{throttledValue && (
-									<span className="material-symbols-outlined pointer-events-none" style={{fontSize: "40px"}}>
-										close_small
-									</span>
-								)}
-								{!throttledValue && (
+							<div>
+								<button onClick={doTheThing} className="core-button">
+									Details{" "}
 									<span
-										className="material-symbols-outlined pointer-events-none"
-										style={{ transform: "rotate(180deg)", fontSize: "40px" }}
+										className="pointer-events-none"
+										style={{
+											transform: !throttledValue
+												? "rotate(180deg)"
+												: "rotate(0deg)",
+										}}
 									>
-										read_more
+										←
 									</span>
-								)}
-							</button>
-							{ content.frontmatter.link !== "none" && 
-								<a href={content.frontmatter.link}
-								onMouseOver={() => setTipTwo(true)}
-								onMouseOut={() => setTipTwo(false)}
-								className="pointer-events-auto w-[70px] h-[70px] relative cursor-pointer rounded-full border flex items-center justify-center mx-auto border-[rgba(255,255,255,0.1)] wang-jangle"
-							>
-								<motion.span
-									initial={{ opacity: 0, x: -20 }}
-									animate={tipTwo ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-									transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-									className="pointer-events-none absolute text-nowrap px-3 leading-[40px] rounded-[4px] inline-block text-sm right-[80px] bg-[rgba(255,255,255,0.9)] text-black top-[15px]"
-								>
-									see live
-								</motion.span>
-								<span
-									className="material-symbols-outlined"
-									style={{ fontSize: "32px" }}
-								>
-									arrow_outward
-								</span>
-							</a>
-							}
-							
+								</button>
+							</div>
+							{content.frontmatter.link !== "none" && (
+								<div>
+									<a href={content.frontmatter.link} className="core-button">
+										See it live ↗
+									</a>
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+				<div className="h-full w-full grid grid-cols-12 gap-x-3 absolute top-0 right-0">
+					<div className="relative col-span-4 col-start-8">
+						<div
+							className="sticky py-20 pl-10 pr-20"
+							style={{ top: (height - screenSize.height) * -1 }}
+							ref={thingyRef}
+						>
+							<motion.div
+								variants={copyEffect}
+								initial="visible"
+								animate={throttledValue ? "visible" : "hidden"}
+								dangerouslySetInnerHTML={{ __html: content.body }}
+							></motion.div>
 						</div>
 					</div>
 				</div>
 				<div className="relative mx-7">
-					<div className="w-full grid grid-cols-12 gap-x-3" ref={myRef}>
-						<div className="col-span-11 z-10 pointer-events-none">
-							{content.frontmatter.assets.map((i) => {
-								
-								return (
-									<ImgScale
-										size={i.size}
-										grid={i.image.length > 1 ? true : false}
-										value={throttledValue}
-									>
-										{i.image.map((j) => {
-											const g = getImage(j)
-											return (
-												<>
-													<GatsbyImage
-														image={g}
-														className="rounded mb-3"
-														alt=""
-													/>
-												</>
-											)
-										})}
-									</ImgScale>
-								)
-							})}
+					<motion.div className="relative" animate={throttledValue ? {width:"54vw" } : {width: "calc(100% - 230px)"} } ref={myRef}>
+						<div className="z-10 pointer-events-none masonry">
+							{items}
 						</div>
-					</div>
-					<div className="h-full w-full grid grid-cols-12 gap-x-3 absolute top-0 right-0">
-						<div className="relative col-span-4 col-start-8">
-							<div
-								className="sticky py-20 pl-10 pr-20"
-								style={{ top: (height - screenSize.height) * -1 }}
-								ref={thingyRef}
-							>
-								<motion.div
-									variants={copyEffect}
-									initial="visible"
-									animate={throttledValue ? "visible" : "hidden"}
-									dangerouslySetInnerHTML={{ __html: content.body }}
-								></motion.div>
-							</div>
-						</div>
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</section>

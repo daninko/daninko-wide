@@ -5,10 +5,10 @@ const Footer = ({data}) => {
 		<footer>
 			<div className="grid grid-cols-12 px-7 pb-[200px]">
 				<div className="col-span-8">
-					<span className="font-['hl'] block font-light text-[140px] leading-[1.1]">
+					<span className="font-['si'] block font-medium text-[140px] leading-[1.1]">
 						Let's make something
 					</span>
-					<span className="font-['hl'] block font-light text-[140px] leading-[1.1]">
+					<span className="font-['si'] block font-medium text-[140px] leading-[1.1]">
 						great together.
 					</span>
 				</div>
