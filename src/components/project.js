@@ -45,7 +45,7 @@ const Project = ({ byline, children, content }) => {
 		console.log(g)
 		return (
 			<>
-			{/* <StaticImage src="../images/cloud.png" alt="A dinosaur" /> */}
+				{/* <StaticImage src="../images/cloud.png" alt="A dinosaur" /> */}
 				<GatsbyImage image={g} className="block w-full rounded mb-3" alt="" />
 			</>
 		)
@@ -64,9 +64,9 @@ const Project = ({ byline, children, content }) => {
 
 	return (
 		<section className="relative mb-[750px]">
-			<div className="grid grid-cols-12 gap-x-3 px-7">
+			<div className="grid grid-cols-12 gap-x-3 px-[60px] pb-[90px]">
 				<div className="col-span-10">
-					<h2 className="font-['si'] font-medium mb-16 text-[76px] leading-[1]">
+					<h2 className="font-['si'] font-medium text-[80px] leading-[1]">
 						{content.frontmatter.title}{" "}
 						<span className="font-['si'] text-[18px] font-normal tracking-normal">
 							{content.frontmatter.project}
@@ -77,7 +77,7 @@ const Project = ({ byline, children, content }) => {
 
 			<div className="relative">
 				<div
-					className="absolute z-30 top-20 right-0 w-[230px] pointer-events-none"
+					className="absolute z-30 top-20 right-0 w-[8vw] pointer-events-none"
 					style={{ height: "calc(100% - 7rem)" }}
 				>
 					<div className="w-full sticky top-20 left-0 box-border">
@@ -107,10 +107,13 @@ const Project = ({ byline, children, content }) => {
 						</div>
 					</div>
 				</div>
-				<div className="h-full w-full grid grid-cols-12 gap-x-3 absolute top-0 right-0">
-					<div className="relative col-span-4 col-start-8">
+				<div className="h-full absolute top-0 left-[53.5vw] ">
+					<div
+						className="relative h-full pl-[5vw] pr-[8vw]"
+						style={{ maxWidth: "55ch", marginLeft: "auto", marginRight: "auto" }}
+					>
 						<div
-							className="sticky py-20 pl-10 pr-20"
+							className="sticky py-20 pl-10 pr-10"
 							style={{ top: (height - screenSize.height) * -1 }}
 							ref={thingyRef}
 						>
@@ -123,11 +126,19 @@ const Project = ({ byline, children, content }) => {
 						</div>
 					</div>
 				</div>
-				<div className="relative mx-7">
-					<motion.div className="relative" animate={throttledValue ? {width:"54vw" } : {width: "calc(100% - 230px)"} } ref={myRef}>
-						<div className="z-10 pointer-events-none masonry">
-							{items}
-						</div>
+				<div className="relative mx-7 pointer-events-none ">
+					<motion.div
+						className="relative"
+						transition={{
+							type: "spring",
+							bounce: 0,
+						}}
+						animate={
+							throttledValue ? { width: "53.5vw" } : { width: "calc(100% - 200px)" }
+						}
+						ref={myRef}
+					>
+						<div className="z-10 pointer-events-none masonry">{items}</div>
 					</motion.div>
 				</div>
 			</div>

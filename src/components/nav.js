@@ -5,15 +5,13 @@ import { motion } from "framer-motion"
 const Nav = ({ page = "/", isHome = true, data }) => {
 
 	return (
-		<nav className="mx-[30px] absolute top-0 left-0 right-0" style={{zIndex: 500}}>
+		<nav className="px-[60px] py-[30px] absolute box-border top-0 left-0 right-0" id="nav" style={{zIndex: 500}}>
 			<div className="grid grid-cols-12">
 				<div className="col-span-2">
 					<Link
 						to={page}
 						style={{
 							display: "inline-block",
-							paddingTop: "30px",
-							paddingBottom: "30px",
 						}}
 					>
 						<motion.div
@@ -31,7 +29,7 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 										duration: 0.25,
 									},
 								}}
-								className="bg-black relative font-['m'] text-sm font-bold w-[30px] h-[30px] rounded-[30px] flex justify-center items-center"
+								className="bg-black relative text-sm font-medium w-[30px] h-[30px] rounded-[30px] flex justify-center items-center"
 							>
 								<div className="overflow-hidden h-[20px]">
 									<motion.div
@@ -54,14 +52,14 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 						</motion.div>
 					</Link>
 				</div>
-				<div className="col-span-2 py-[30px]">
+				<div className="col-span-2">
 					<span className="block text-lg leading-normal">{data.site.siteMetadata.author}</span>
 					<span className="block opacity-50 text-lg leading-normal">
 						{data.site.siteMetadata.position}
 					</span>
 				</div>
 				<div className="col-span-7"></div>
-				<div className="col-span-1 text-lg py-[30px]">
+				<div className="col-span-1 text-lg">
 					{data.site.siteMetadata.contactMethods.map((g) =>(
 						<motion.a initial={{opacity: 1}} transition={{duration: 0.15}} whileHover={{opacity:0.5}} href={g.link} className="block text-lg leading-normal">{g.text}</motion.a>
 					))}

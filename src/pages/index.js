@@ -14,16 +14,16 @@ const Index = ({ data }) => {
 			<Nav page="/about" isHome={true} data={data} />
 
 			<main>
-				<header className="pt-[100px] relative overflow-hidden">
+				<header className="mt-[114px] relative overflow-hidden">
 					<motion.div
 						initial={{ left: 0 }}
 						exit={{
 							left: "-100vw",
 							transition: { type: "spring", bounce: 0, duration: 0.5 },
 						}}
-						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-7"
+						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-[60px] py-[40px]"
 					>
-						<div className="col-span-12">
+						<div className="col-span-12 ">
 							<h2 className="font-medium text-[140px] leading-[1.1]">
 								{data.site.siteMetadata.homeHeadline}{" "}
 								<span className="py-1 font-['si'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
