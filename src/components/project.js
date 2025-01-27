@@ -4,6 +4,7 @@ import useThrottle from "../hooks/throttle"
 import useSize from "@react-hook/size"
 import useScreenSize from "../hooks/useScreenSize"
 import Scrl from "scrl"
+import { useIsLarge } from "../hooks/responsive"
 import { ResponsiveMasonry, Masonry } from "react-responsive-masonry"
 
 import ImgScale from "./portfolio-img"
@@ -14,6 +15,8 @@ const Project = ({ byline, children, content }) => {
 	const myRef = useRef(null)
 	const thingyRef = useRef(null)
 	const screenSize = useScreenSize()
+
+	const very = useIsLarge()
 
 	const [width, height] = useSize(thingyRef)
 
@@ -78,42 +81,14 @@ const Project = ({ byline, children, content }) => {
 			</div>
 
 			<div className="relative">
-				<div
-					className="absolute z-30 top-20 right-0 w-[150px] pointer-events-none"
-					style={{ height: "calc(100% - 7rem)" }}
-				>
-					<div className="w-full sticky top-20 left-0 pr-[30px] box-border" style={{textAlign: "right"}}>
-							<div>
-								<button onClick={doTheThing} className="core-button">
-									Details{" "}
-									<span
-										className="pointer-events-none"
-										style={{
-											transform: !throttledValue
-												? "rotate(180deg)"
-												: "rotate(0deg)",
-										}}
-									>
-										←
-									</span>
-								</button>
-							</div>
-							{content.frontmatter.link !== "none" && (
-								<div>
-									<a href={content.frontmatter.link} className="core-button">
-										See it live ↗
-									</a>
-								</div>
-							)}
-					</div>
-				</div>
-				<div className="h-full absolute top-0 left-[57.5vw] ">
+				
+				<div className="h-full absolute top-0 left-[57.5vw] xl:right-[100px] 2xl:right-[150px]">
 					<div
-						className="relative h-full pl-[5vw] pr-[8vw]"
+						className="relative h-full pl-[4vw] pr-[2vw]"
 						style={{ maxWidth: "55ch", marginLeft: "auto", marginRight: "auto" }}
 					>
 						<div
-							className="sticky py-20 pl-10 pr-10"
+							className="sticky py-20"
 							style={{ top: (height - screenSize.height) * -1 }}
 							ref={thingyRef}
 						>
@@ -140,6 +115,35 @@ const Project = ({ byline, children, content }) => {
 					>
 						<div className="z-10 pointer-events-none masonry">{items}</div>
 					</motion.div>
+				</div>
+				<div
+					className="absolute z-30 top-20 right-0 w-[150px] pointer-events-none"
+					style={{ height: "calc(100% - 7rem)", display: "flex" }}
+				>
+					<div className="w-full sticky bottom-12 left-0 pr-[30px] box-border" style={{textAlign: "right", alignSelf: "flex-end"}}>
+							<div>
+								<button onClick={doTheThing} className="core-button">
+									Details{" "}
+									<span
+										className="pointer-events-none"
+										style={{
+											transform: !throttledValue
+												? "rotate(180deg)"
+												: "rotate(0deg)",
+										}}
+									>
+										←
+									</span>
+								</button>
+							</div>
+							{content.frontmatter.link !== "none" && (
+								<div>
+									<a href={content.frontmatter.link} className="core-button">
+										See it live ↗
+									</a>
+								</div>
+							)}
+					</div>
 				</div>
 			</div>
 		</section>
