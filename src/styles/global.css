@@ -27,6 +27,8 @@
 	body {
 		background-color: #1d1d1d;
 		color: #f9f9f9;
+		/* background-color: #f9f9f9;
+		color: #1d1d1d; */
 		font-family: "si";
 		font-kerning: normal;
 		font-size: 16px;
@@ -78,7 +80,7 @@
 		margin-bottom: var(--masonry-gap);
 	}
 
-	@media screen and (max-width: 1280px) {
+	@media screen and (max-width: 1350px) {
 		.masonry {
 			column-count: 1;
 		}

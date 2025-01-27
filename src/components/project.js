@@ -82,7 +82,7 @@ const Project = ({ byline, children, content }) => {
 
 			<div className="relative">
 				
-				<div className="h-full absolute top-0 left-[57.5vw] xl:right-[100px] 2xl:right-[150px]">
+				<div className="h-full absolute top-0 left-[57.5vw] right-[0px]">
 					<div
 						className="relative h-full pl-[4vw] pr-[2vw]"
 						style={{ maxWidth: "55ch", marginLeft: "auto", marginRight: "auto" }}
@@ -109,7 +109,7 @@ const Project = ({ byline, children, content }) => {
 							bounce: 0,
 						}}
 						animate={
-							throttledValue ? { width: "57.5vw" } : { width: "calc(100% - 150px)" }
+							throttledValue ? { width: "57.5vw" } : { width:"100%"  }
 						}
 						ref={myRef}
 					>
