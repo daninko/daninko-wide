@@ -46,7 +46,9 @@ const Project = ({ byline, children, content }) => {
 		return (
 			<>
 				{/* <StaticImage src="../images/cloud.png" alt="A dinosaur" /> */}
-				<GatsbyImage image={g} className="block w-full rounded mb-3" alt="" />
+				<motion.div layout transition={{type: "spring", bounce: 0, duration: 1}}>
+					<GatsbyImage image={g} className="block w-full rounded mb-3" alt="" />
+				</motion.div>
 			</>
 		)
 	})
@@ -68,7 +70,7 @@ const Project = ({ byline, children, content }) => {
 				<div className="col-span-10">
 					<h2 className="font-['si'] font-medium text-[80px] leading-[1]">
 						{content.frontmatter.title}{" "}
-						<span className="font-['si'] text-[18px] font-normal tracking-normal">
+						<span className="font-['si'] text-[18px] inline-block font-normal tracking-normal">
 							{content.frontmatter.project}
 						</span>
 					</h2>
@@ -77,11 +79,10 @@ const Project = ({ byline, children, content }) => {
 
 			<div className="relative">
 				<div
-					className="absolute z-30 top-20 right-0 w-[8vw] pointer-events-none"
+					className="absolute z-30 top-20 right-0 w-[150px] pointer-events-none"
 					style={{ height: "calc(100% - 7rem)" }}
 				>
-					<div className="w-full sticky top-20 left-0 box-border">
-						<div className="col-span-1 col-start-12 pl-3">
+					<div className="w-full sticky top-20 left-0 pr-[30px] box-border" style={{textAlign: "right"}}>
 							<div>
 								<button onClick={doTheThing} className="core-button">
 									Details{" "}
@@ -104,10 +105,9 @@ const Project = ({ byline, children, content }) => {
 									</a>
 								</div>
 							)}
-						</div>
 					</div>
 				</div>
-				<div className="h-full absolute top-0 left-[53.5vw] ">
+				<div className="h-full absolute top-0 left-[57.5vw] ">
 					<div
 						className="relative h-full pl-[5vw] pr-[8vw]"
 						style={{ maxWidth: "55ch", marginLeft: "auto", marginRight: "auto" }}
@@ -134,7 +134,7 @@ const Project = ({ byline, children, content }) => {
 							bounce: 0,
 						}}
 						animate={
-							throttledValue ? { width: "53.5vw" } : { width: "calc(100% - 200px)" }
+							throttledValue ? { width: "57.5vw" } : { width: "calc(100% - 150px)" }
 						}
 						ref={myRef}
 					>

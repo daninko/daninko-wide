@@ -24,11 +24,8 @@ const Index = ({ data }) => {
 						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-[60px] py-[40px]"
 					>
 						<div className="col-span-12 ">
-							<h2 className="font-medium text-[140px] leading-[1.1]">
+							<h2 className="font-medium text-[140px] leading-[1.1]" style={{maxWidth: "1250px"}}>
 								{data.site.siteMetadata.homeHeadline}{" "}
-								<span className="py-1 font-['si'] text-xl border-b border-[#f9f9f9] tracking-normal border-solid">
-									more +
-								</span>
 							</h2>
 						</div>
 					</motion.div>

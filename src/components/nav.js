@@ -16,7 +16,7 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 					>
 						<motion.div
 							layout
-							className="switch relative select-none cursor-pointer bg-white w-[56px] h-[30px] rounded-[30px] px-[2px] py-[2px]"
+							className="switch relative select-none cursor-pointer bg-white w-[50px] h-[26px] rounded-[26px] px-[2px] py-[2px]"
 						>
 							<motion.div
 								layout
@@ -29,7 +29,7 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 										duration: 0.25,
 									},
 								}}
-								className="bg-black relative text-sm font-medium w-[30px] h-[30px] rounded-[30px] flex justify-center items-center"
+								className="bg-black relative text-[10px] font-medium w-[26px] h-[26px] rounded-[26px] flex justify-center items-center"
 							>
 								<div className="overflow-hidden h-[20px]">
 									<motion.div
@@ -53,15 +53,15 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 					</Link>
 				</div>
 				<div className="col-span-2">
-					<span className="block text-lg leading-normal">{data.site.siteMetadata.author}</span>
-					<span className="block opacity-50 text-lg leading-normal">
+					<span className="block leading-normal">{data.site.siteMetadata.author}</span>
+					<span className="block leading-normal">
 						{data.site.siteMetadata.position}
 					</span>
 				</div>
 				<div className="col-span-7"></div>
-				<div className="col-span-1 text-lg">
+				<div className="col-span-1">
 					{data.site.siteMetadata.contactMethods.map((g) =>(
-						<motion.a initial={{opacity: 1}} transition={{duration: 0.15}} whileHover={{opacity:0.5}} href={g.link} className="block text-lg leading-normal">{g.text}</motion.a>
+						<motion.a initial={{opacity: 1}} transition={{duration: 0.15}} whileHover={{opacity:0.5}} href={g.link} className="block leading-normal">{g.text}</motion.a>
 					))}
 				</div>
 			</div>
