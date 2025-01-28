@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
 import Nav from "../components/nav"
 import Footer from "../components/footer"

@@ -8,4 +8,4 @@ export const wrapPageElement = ({ element }) => (
 
 export const shouldUpdateScroll = () => {
 	return false
-  }
+}

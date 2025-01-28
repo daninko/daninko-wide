@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion, spring } from "motion/react"
 import useThrottle from "../hooks/throttle"
 import useSize from "@react-hook/size"
 import useScreenSize from "../hooks/useScreenSize"
@@ -19,6 +19,7 @@ const Project = ({ byline, children, content }) => {
 	const very = useIsLarge()
 
 	const [width, height] = useSize(thingyRef)
+	const [addClass, setAddClass] = useState("")
 
 	const throttledValue = useThrottle(openItem)
 
@@ -49,7 +50,7 @@ const Project = ({ byline, children, content }) => {
 		return (
 			<>
 				{/* <StaticImage src="../images/cloud.png" alt="A dinosaur" /> */}
-				<motion.div layout transition={{type: "spring", bounce: 0, duration: 1}}>
+				<motion.div layout transition={{ type: "spring", bounce: 0, duration: 1 }}>
 					<GatsbyImage image={g} className="block w-full rounded mb-3" alt="" />
 				</motion.div>
 			</>
@@ -59,8 +60,10 @@ const Project = ({ byline, children, content }) => {
 	const doTheThing = () => {
 		if (throttledValue) {
 			setOpen(false)
+			setAddClass("")
 		} else {
 			setOpen(true)
+			setAddClass("masonry-open")
 			scrl.scrollTo(myRef.current)
 		}
 	}
@@ -68,6 +71,24 @@ const Project = ({ byline, children, content }) => {
 	useEffect(() => {}, [])
 
 	return (
+		<>
+		<style>
+			{`
+			
+				.masonry-image-container {
+					transition: margin-right ${spring(0.45, 0.001)};
+				}
+
+				.masonry-open {
+					margin-right: 800px
+				}
+
+				.content-open {
+					width: 800px
+				}
+			
+			`}
+		</style>
 		<section className="relative mb-[750px]">
 			<div className="grid grid-cols-12 gap-x-3 px-[60px] pb-[90px]">
 				<div className="col-span-10">
@@ -81,10 +102,9 @@ const Project = ({ byline, children, content }) => {
 			</div>
 
 			<div className="relative">
-				
-				<div className="h-full absolute top-0 left-[57.5vw] right-[0px]">
+				<div className="h-full absolute top-0 w-[800px] right-[0px]">
 					<div
-						className="relative h-full pl-[4vw] pr-[2vw]"
+						className="relative h-full pl-[2rem] pr-[4vw]"
 						style={{ maxWidth: "55ch", marginLeft: "auto", marginRight: "auto" }}
 					>
 						<div
@@ -103,50 +123,47 @@ const Project = ({ byline, children, content }) => {
 				</div>
 				<div className="relative mx-7 pointer-events-none ">
 					<motion.div
-						className="relative"
-						transition={{
-							type: "spring",
-							bounce: 0,
-						}}
-						animate={
-							throttledValue ? { width: "57.5vw" } : { width:"100%"  }
-						}
+						className={"relative masonry-image-container " + addClass }
+						// transition={{
+						// 	type: "spring",
+						// 	bounce: 0,
+						// }}
+						// animate={throttledValue ? { marginRight: "800px" } : { marginRight: 0 }}
 						ref={myRef}
 					>
 						<div className="z-10 pointer-events-none masonry">{items}</div>
 					</motion.div>
 				</div>
 				<div
-					className="absolute z-30 top-20 right-0 w-[150px] pointer-events-none"
+					className="absolute z-30 top-20 right-0 pointer-events-none"
 					style={{ height: "calc(100% - 7rem)", display: "flex" }}
 				>
-					<div className="w-full sticky bottom-12 left-0 pr-[30px] box-border" style={{textAlign: "right", alignSelf: "flex-end"}}>
-							<div>
-								<button onClick={doTheThing} className="core-button">
-									Details{" "}
-									<span
-										className="pointer-events-none"
-										style={{
-											transform: !throttledValue
-												? "rotate(180deg)"
-												: "rotate(0deg)",
-										}}
-									>
-										←
-									</span>
-								</button>
-							</div>
-							{content.frontmatter.link !== "none" && (
-								<div>
-									<a href={content.frontmatter.link} className="core-button">
-										See it live ↗
-									</a>
-								</div>
-							)}
+					<div
+						className="w-full sticky bottom-12 left-0 mr-[60px] box-border"
+						style={{ textAlign: "right", alignSelf: "flex-end" }}
+					>
+						{content.frontmatter.link !== "none" && (
+							<a href={content.frontmatter.link} style={{marginRight: "8px"}} className="core-button">
+								See it live ↗
+							</a>
+						)}
+						<button onClick={doTheThing} className="core-button">
+							Details{" "}
+							<span
+								className="pointer-events-none"
+								style={{
+									transform: !throttledValue ? "rotate(180deg)" : "rotate(0deg)",
+								}}
+							>
+								←
+							</span>
+						</button>
+						
 					</div>
 				</div>
 			</div>
 		</section>
+		</>
 	)
 }
 

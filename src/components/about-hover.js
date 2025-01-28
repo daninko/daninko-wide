@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { InView } from "react-intersection-observer"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { getImage,GatsbyImage } from "gatsby-plugin-image"
 
 const AboutHover = ({ children, slightFade = true, image }) => {

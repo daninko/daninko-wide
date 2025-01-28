@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
 const Nav = ({ page = "/", isHome = true, data }) => {
 

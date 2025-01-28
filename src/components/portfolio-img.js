@@ -1,5 +1,5 @@
 import React from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
 const ImgScale = ({ children, size = 100, value = false, grid= false }) => {
 
