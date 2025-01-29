@@ -54,17 +54,17 @@
 
 	.core-button {
 		padding: 14px 18px;
-		background-color: rgba(125,125,125, 0.5);
+		background-color: rgba(230,230,230, 0.1);
 		border-radius: 4px;
 		font-size: 14px;
 		/* vertical-align:middle; */
 		margin-bottom: 8px;
-		backdrop-filter: blur(8px);
+		backdrop-filter: blur(16px);
 		@apply pointer-events-auto font-['si'] relative cursor-pointer inline-block;
 	}
 
 	.core-button:hover {
-		background-color: rgba(125,125,125, 0.6);
+		background-color: rgba(230,230,230,0.2);
 	}
 
 	.masonry {
@@ -87,7 +87,25 @@
 		margin-bottom: var(--masonry-gap);
 	}
 
-	@container masonry-container (width < 1000px) {
+	.masonry-open {
+		margin-right: 800px
+	}
+
+	.project-content {
+		width: 800px;
+	}
+
+	@media screen and (max-width: 1720px) {
+		.project-content {
+			width: 46vw;
+		}
+
+		.masonry-open {
+			margin-right: 46vw;
+		}
+	}
+
+	@container masonry-container (width < 600px) {
 		.masonry {
 			column-count: 1;
 		}
@@ -129,7 +147,8 @@
 
 	p {
 		line-height: 1.3;
-		@apply text-[18px] mb-p-bottom pb-4 max-w-[55ch] tracking-normal;
+		font-size: clamp(0.875rem, 0.166vw + 0.832rem, 1rem);
+		@apply mb-p-bottom pb-4 max-w-[55ch] tracking-normal;
 	}
 
 	img {

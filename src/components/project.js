@@ -58,6 +58,7 @@ const Project = ({ byline, children, content }) => {
 	})
 
 	const doTheThing = () => {
+		myRef.current.classList.add("masonry-transition")
 		if (throttledValue) {
 			setOpen(false)
 			setAddClass("")
@@ -66,6 +67,9 @@ const Project = ({ byline, children, content }) => {
 			setAddClass("masonry-open")
 			scrl.scrollTo(myRef.current)
 		}
+		setTimeout(() => {
+			myRef.current.classList.remove("masonry-transition")
+		}, 1010)
 	}
 
 	useEffect(() => {}, [])
@@ -75,12 +79,8 @@ const Project = ({ byline, children, content }) => {
 		<style>
 			{`
 			
-				.masonry-image-container {
+				.masonry-transition {
 					transition: margin-right ${spring(0.45, 0.001)};
-				}
-
-				.masonry-open {
-					margin-right: 800px
 				}
 
 				.content-open {
@@ -102,10 +102,10 @@ const Project = ({ byline, children, content }) => {
 			</div>
 
 			<div className="relative">
-				<div className="h-full absolute top-0 w-[800px] right-[0px]">
+				<div className="h-full project-content absolute top-0 right-[0px]">
 					<div
 						className="relative h-full pl-[2rem] pr-[4vw]"
-						style={{ maxWidth: "55ch", marginLeft: "auto", marginRight: "auto" }}
+						style={{ maxWidth: "50ch", marginLeft: "auto", marginRight: "auto" }}
 					>
 						<div
 							className="sticky py-20"
