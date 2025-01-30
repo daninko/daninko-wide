@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 const Nav = ({ page = "/", isHome = true, data }) => {
 
 	return (
-		<nav className="px-[60px] py-[30px] absolute box-border top-0 left-0 right-0" id="nav" style={{zIndex: 500}}>
+		<nav className="px-[12px] md:px-[30px] xl:px-[60px] py-[30px] absolute box-border top-0 left-0 right-0" id="nav" style={{zIndex: 500}}>
 			<div className="flex">
 				<div className="flex-none thinger-dinger">
 					<Link

@@ -21,10 +21,10 @@ const Index = ({ data }) => {
 							left: "-100vw",
 							transition: { type: "spring", bounce: 0, duration: 0.5 },
 						}}
-						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-[60px] py-[40px]"
+						className="h-full relative pb-[250px] md:pb-[400px] xl:pb-[30vw] grid grid-cols-12 gap-x-7 px-[12px] md:px-[30px] xl:px-[60px]  py-[40px]"
 					>
 						<div className="col-span-12 ">
-							<h1 style={{maxWidth: "1250px"}}>
+							<h1 style={{maxWidth: "1800px"}}>
 								{data.site.siteMetadata.homeHeadline}{" "}
 							</h1>
 						</div>

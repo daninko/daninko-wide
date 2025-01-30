@@ -90,7 +90,7 @@ const Project = ({ byline, children, content }) => {
 			`}
 		</style>
 		<section className="relative mb-[750px]">
-			<div className="grid grid-cols-12 gap-x-3 px-[60px] pb-[90px]">
+			<div className="grid grid-cols-12 gap-x-3 px-[12px] md:px-[30px] xl:px-[60px]  pb-[90px]">
 				<div className="col-span-10">
 					<h2 className="font-['si']">
 						{content.frontmatter.title}{" "}
@@ -121,7 +121,7 @@ const Project = ({ byline, children, content }) => {
 						</div>
 					</div>
 				</div>
-				<div className="relative mx-7 pointer-events-none ">
+				<div className="relative px-[8px] md:px-[15px] xl:px-[30px]  pointer-events-none ">
 					<motion.div
 						className={"relative masonry-image-container " + addClass }
 						// transition={{
