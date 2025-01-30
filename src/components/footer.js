@@ -5,18 +5,15 @@ const Footer = ({data}) => {
 		<footer>
 			<div className="grid grid-cols-12 px-7 pb-[200px]">
 				<div className="col-span-8">
-					<span className="font-['si'] block font-medium text-[140px] leading-[1.1]">
 						Let's make something
-					</span>
-					<span className="font-['si'] block font-medium text-[140px] leading-[1.1]">
 						great together.
-					</span>
+
 				</div>
 			</div>
-			<div className="flex justify-center py-14">
+			<div className="flex justify-center px-7 pb-[30px]">
 				<svg
-					width="205"
-					height="30"
+					width="100%"
+					height="auto"
 					viewBox="0 0 205 30"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"

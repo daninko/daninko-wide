@@ -24,9 +24,9 @@ const Index = ({ data }) => {
 						className="h-full relative pb-[95vh] grid grid-cols-12 gap-x-7 px-[60px] py-[40px]"
 					>
 						<div className="col-span-12 ">
-							<h2 className="font-medium text-[140px] leading-[1.1]" style={{maxWidth: "1250px"}}>
+							<h1 style={{maxWidth: "1250px"}}>
 								{data.site.siteMetadata.homeHeadline}{" "}
-							</h2>
+							</h1>
 						</div>
 					</motion.div>
 					<motion.div
@@ -57,8 +57,6 @@ const Index = ({ data }) => {
 				{data.allMdx.edges.map(({ node }, i) => {
 					return <Project content={node} />
 				})}
-
-				<div className="h-screen"></div>
 			</main>
 			<Footer />
 		</>

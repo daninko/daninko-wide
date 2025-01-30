@@ -69,7 +69,7 @@
 
 	.masonry {
 		--masonry-gap: 12px;
-		--masonry-brick-width: 30vw;
+		--masonry-brick-width: 20vw;
 		column-gap: var(--masonry-gap);
 		column-fill: initial;
 		column-count: 2;
@@ -95,6 +95,19 @@
 		width: 800px;
 	}
 
+	.thinger-dinger {
+		width: clamp(6.25rem, 4.464vw + 5.357rem, 10.938rem);
+	}
+
+	@media screen and (max-width: 1280px) {
+		.project-content {
+			width: 40vw;
+		}
+		.masonry-open {
+			margin-right: 40vw;
+		}
+	}
+
 	@media screen and (max-width: 1720px) {
 		.project-content {
 			width: 46vw;
@@ -111,7 +124,7 @@
 		}
 	}
 
-	/* @supports(grid-template-rows: masonry) {
+	@supports(grid-template-rows: masonry) {
 		.masonry {
 		  display: grid;
 		  gap: var(--masonry-gap);
@@ -123,14 +136,19 @@
 		.masonry > * {
 			margin-bottom: initial;
 		}
-	} */
+	}
 
 	h1 {
-		@apply text-display-2 pb-u-1 leading-0-95 tracking-tight;
+		font-weight: 500;
+		font-size: clamp(3rem, 5.476vw + 1.905rem, 8.75rem);
+line-height: clamp(3.3rem, 6.024vw + 2.095rem, 9.625rem);
 	}
 
 	h2 {
-		@apply text-xl tracking-tight;
+		font-size: clamp(2.25rem, 2.381vw + 1.774rem, 4.75rem);
+		font-weight: 500;
+		letter-spacing: -0.02em;
+		line-height: clamp(2.363rem, 2.5vw + 1.863rem, 4.988rem);
 	}
 
 	h3 {
@@ -151,12 +169,12 @@
 		@apply mb-p-bottom pb-4 max-w-[55ch] tracking-normal;
 	}
 
-	img {
+	img, .img {
 		@apply w-full h-auto; 
 	}
 
 	.dan-grid {
-		@apply relative grid grid-cols-12 max-w-full px-5 gap-5 lg:px-16 mx-auto;
+		@apply relative grid grid-cols-12 max-w-full px-5 lg:px-16 mx-auto;
 	}
 
 	.project-info-grid {
@@ -176,7 +194,7 @@
 	}
 
 	.dan-grid-logo {
-		@apply relative grid grid-cols-12 max-w-logo px-5 gap-5 lg:px-16 mx-auto;
+		@apply relative grid grid-cols-12 max-w-logo px-5 lg:px-16 mx-auto;
 	}
 
 	.Typewriter {

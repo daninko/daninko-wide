@@ -6,8 +6,8 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 
 	return (
 		<nav className="px-[60px] py-[30px] absolute box-border top-0 left-0 right-0" id="nav" style={{zIndex: 500}}>
-			<div className="grid grid-cols-12">
-				<div className="col-span-2">
+			<div className="flex">
+				<div className="flex-none thinger-dinger">
 					<Link
 						to={page}
 						style={{
@@ -52,14 +52,13 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 						</motion.div>
 					</Link>
 				</div>
-				<div className="col-span-2">
+				<div className="flex-auto">
 					<span className="block leading-normal">{data.site.siteMetadata.author}</span>
 					<span className="block leading-normal">
 						{data.site.siteMetadata.position}
 					</span>
 				</div>
-				<div className="col-span-7"></div>
-				<div className="col-span-1">
+				<div className="w-32">
 					{data.site.siteMetadata.contactMethods.map((g) =>(
 						<motion.a initial={{opacity: 1}} transition={{duration: 0.15}} whileHover={{opacity:0.5}} href={g.link} className="block leading-normal">{g.text}</motion.a>
 					))}

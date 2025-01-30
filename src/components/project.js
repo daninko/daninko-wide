@@ -92,7 +92,7 @@ const Project = ({ byline, children, content }) => {
 		<section className="relative mb-[750px]">
 			<div className="grid grid-cols-12 gap-x-3 px-[60px] pb-[90px]">
 				<div className="col-span-10">
-					<h2 className="font-['si'] font-medium text-[80px] leading-[1]">
+					<h2 className="font-['si']">
 						{content.frontmatter.title}{" "}
 						<span className="font-['si'] text-[18px] inline-block font-normal tracking-normal">
 							{content.frontmatter.project}
@@ -104,7 +104,7 @@ const Project = ({ byline, children, content }) => {
 			<div className="relative">
 				<div className="h-full project-content absolute top-0 right-[0px]">
 					<div
-						className="relative h-full pl-[2rem] pr-[4vw]"
+						className="relative h-full pl-[2vw] pr-[4vw]"
 						style={{ maxWidth: "50ch", marginLeft: "auto", marginRight: "auto" }}
 					>
 						<div
