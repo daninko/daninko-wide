@@ -14,20 +14,23 @@ const Index = ({ data }) => {
 			<Nav page="/about" isHome={true} data={data} />
 
 			<main>
-				<header className="mt-[114px] relative overflow-hidden">
+				<header className="mt-[250px] relative overflow-hidden">
 					<motion.div
 						initial={{ left: 0 }}
 						exit={{
 							left: "-100vw",
 							transition: { type: "spring", bounce: 0, duration: 0.5 },
 						}}
-						className="h-full relative pb-[250px] md:pb-[400px] xl:pb-[30vw] grid grid-cols-12 gap-x-7 px-[12px] md:px-[30px] xl:px-[60px]  py-[40px]"
+						className="h-full relative pb-[250px] md:pb-[20vw] xl:pb-[20vw] grid grid-cols-12 gap-x-7 px-[12px] md:px-[30px] xl:px-[60px]  py-[40px]"
 					>
-						<div className="col-span-12 ">
-							<h1 style={{maxWidth: "1800px"}}>
+						{/* <div className="col-span-12 ">
+							<h1>
 								{data.site.siteMetadata.homeHeadline}{" "}
+								<span className="display-block block">Helping teams strategically</span>
+								<span className="display-block block">design &amp; build innovative</span>
+								<span className="display-block block">digital products.</span>
 							</h1>
-						</div>
+						</div> */}
 					</motion.div>
 					<motion.div
 						className="w-full h-full absolute top-0 bg-[#3C4941]"

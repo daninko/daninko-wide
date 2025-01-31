@@ -52,10 +52,16 @@ const Nav = ({ page = "/", isHome = true, data }) => {
 						</motion.div>
 					</Link>
 				</div>
-				<div className="flex-auto">
+				<div className="w-[400px]">
 					<span className="block leading-normal">{data.site.siteMetadata.author}</span>
 					<span className="block leading-normal">
 						{data.site.siteMetadata.position}
+					</span>
+				</div>
+				<div className="flex-auto">
+					<span className="block leading-normal">Helping teams strategically design &amp; </span>
+					<span className="block leading-normal">
+						build innovative digital products
 					</span>
 				</div>
 				<div className="w-32">

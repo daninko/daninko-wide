@@ -89,15 +89,17 @@ const Project = ({ byline, children, content }) => {
 			
 			`}
 		</style>
-		<section className="relative mb-[750px]">
-			<div className="grid grid-cols-12 gap-x-3 px-[12px] md:px-[30px] xl:px-[60px]  pb-[90px]">
-				<div className="col-span-10">
+		<section className="relative mb-[500px]">
+			<div className="flex items-end px-[12px] md:px-[30px] xl:px-[60px]  pb-[90px]">
+				<div className="flex-auto">
 					<h2 className="font-['si']">
-						{content.frontmatter.title}{" "}
-						<span className="font-['si'] text-[18px] inline-block font-normal tracking-normal">
+						{content.frontmatter.title}
+					</h2>
+				</div>
+				<div className="w-40">
+				<span className="font-['si'] inline-block font-normal tracking-normal">
 							{content.frontmatter.project}
 						</span>
-					</h2>
 				</div>
 			</div>
 
@@ -108,7 +110,7 @@ const Project = ({ byline, children, content }) => {
 						style={{ maxWidth: "50ch", marginLeft: "auto", marginRight: "auto" }}
 					>
 						<div
-							className="sticky py-20"
+							className="sticky py-10 xl:py-12 2xl:py-20"
 							style={{ top: (height - screenSize.height) * -1 }}
 							ref={thingyRef}
 						>
@@ -124,11 +126,6 @@ const Project = ({ byline, children, content }) => {
 				<div className="relative px-[8px] md:px-[15px] xl:px-[30px]  pointer-events-none ">
 					<motion.div
 						className={"relative masonry-image-container " + addClass }
-						// transition={{
-						// 	type: "spring",
-						// 	bounce: 0,
-						// }}
-						// animate={throttledValue ? { marginRight: "800px" } : { marginRight: 0 }}
 						ref={myRef}
 					>
 						<div className="z-10 pointer-events-none masonry">{items}</div>
