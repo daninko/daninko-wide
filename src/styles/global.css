@@ -2,20 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+.swiper-slide {
+	width: fit-content;
+}
 
+/* .swiper-wrapper {
+	transition-duration: 0.05s !important;
+	transition-timing-function: ease-out;
+  } */
+
+@layer base {
 	@font-face {
-		font-family: 'si';
+		font-family: "si";
 		src: url("./fonts/SuisseIntl-Regular.woff2") format("woff2");
 		font-weight: 400;
 	}
 	@font-face {
-		font-family: 'si';
+		font-family: "si";
 		src: url("./fonts/SuisseIntl-Book.woff2") format("woff2");
 		font-weight: 450;
 	}
 	@font-face {
-		font-family: 'si';
+		font-family: "si";
 		src: url("./fonts/SuisseIntl-Medium.woff2") format("woff2");
 		font-weight: 500;
 	}
@@ -25,129 +33,22 @@
 	}
 
 	body {
-		background-color: #1d1d1d;
+		background-color: #111;
 		color: #f9f9f9;
 		/* background-color: #f9f9f9;
 		color: #1d1d1d; */
-		font-family: "si";
+		font-family: "Untitled Sans";
 		font-kerning: normal;
-		font-size: 16px;
+		font-size: 20px;
+		overflow-x: hidden;
+		overflow-y: hidden;
 		-webkit-font-smoothing: antialiased;
-	}
-
-	.material-symbols-outlined {
-		font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 48;
-		font-size: 40px; 
-	}
-	.wang-jangle {
-		-webkit-tap-highlight-color: transparent;
-		-webkit-touch-callout: none;
-		-webkit-user-select: none;
-		-khtml-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-	}
-	.wang-jangle:focus {
-		outline: none !important;
-	}
-
-	.portfolio-container {
-		background-color: #f9f9f9;
-		color: #1d1d1d;
-	}
-
-	.core-button {
-		padding: 14px 18px;
-		background-color: rgba(80,80,80, 0.25);
-		border-radius: 4px;
-		font-size: 14px;
-		/* vertical-align:middle; */
-		margin-bottom: 8px;
-		backdrop-filter: blur(16px);
-		@apply pointer-events-auto font-['si'] relative cursor-pointer inline-block;
-	}
-
-	.core-button:hover {
-		background-color: rgba(80,80,80,0.3);
-	}
-
-	.masonry {
-		--masonry-gap: 12px;
-		--masonry-brick-width: 20vw;
-		column-gap: var(--masonry-gap);
-		column-fill: initial;
-		column-count: 2;
-		
-		/* column-width: var(--masonry-brick-width); */
-	}
-
-	.masonry-image-container {
-		container-name: masonry-container;
-  		container-type: inline-size;
-	}
-	
-	.masonry > * {
-		break-inside: avoid;
-		margin-bottom: var(--masonry-gap);
-	}
-
-	.masonry-open {
-		margin-right: 800px
-	}
-
-	.project-content {
-		width: 800px;
-	}
-
-	.thinger-dinger {
-		width: clamp(6.25rem, 4.464vw + 5.357rem, 10.938rem);
-	}
-
-	@media screen and (max-width: 1280px) {
-		.project-content {
-			width: 40vw;
-		}
-		.masonry-open {
-			margin-right: 40vw;
-		}
-	}
-
-	@media screen and (max-width: 1720px) {
-		.project-content {
-			width: 46vw;
-		}
-
-		.masonry-open {
-			margin-right: 46vw;
-		}
-	}
-
-	@container masonry-container (width < 600px) {
-		.masonry {
-			column-count: 1;
-		}
-	}
-
-	@supports(grid-template-rows: masonry) {
-		.masonry {
-		  display: grid;
-		  gap: var(--masonry-gap);
-		  grid-template-rows: masonry;
-		  grid-template-columns: 1fr 1fr;
-		  align-tracks: stretch;
-		}
-	
-		.masonry > * {
-			margin-bottom: initial;
-		}
 	}
 
 	h1 {
 		font-weight: 500;
 		font-size: 110px;
 		line-height: 1.1;
-
 	}
 
 	h2 {
@@ -169,13 +70,26 @@
 	}
 
 	p {
-		line-height: 1.3;
-		font-size: clamp(0.875rem, 0.166vw + 0.832rem, 1rem);
-		@apply mb-p-bottom pb-4 max-w-[55ch] tracking-normal;
+		line-height: 1.6;
+		margin-bottom: calc(20px * 1.6);
 	}
 
-	img, .img {
-		@apply w-full h-auto; 
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	ul {
+		line-height: 1.6;
+	}
+
+	img,
+	.img {
+		@apply w-full h-auto;
+	}
+
+	.underline-link {
+		line-height: 1.6;
+		border-bottom: 1px solid rgba(249, 249, 249, 1);
 	}
 
 	.dan-grid {

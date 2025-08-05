@@ -17,9 +17,9 @@
 //   }) => {
 // 	const currentPosition = getSavedScrollPosition(location)
 // 	const queriedPosition = getSavedScrollPosition({ pathname: `/random` })
-  
+
 // 	window.scrollTo(...(currentPosition || [0, 0]))
-  
+
 // 	return false
 //   }
 
@@ -35,13 +35,13 @@
 // 		}
 // 	  }
 // 	`);
-  
+
 // 	if (result.errors) {
 // 	  reporter.panic("failed to create posts ", result.errors);
 // 	}
-  
+
 // 	const pages = result.data.allMdx.nodes;
-  
+
 // 	pages.forEach((page) => {
 // 	  actions.createPage({
 // 		path: page.frontmatter.tag,
