@@ -197,10 +197,6 @@ module.exports = {
 			},
 		  },
 		{
-			resolve: "gatsby-plugin-mdx",
-			options: {},
-		},
-		{
 			resolve: `gatsby-plugin-sharp`,
 			options: {
 				defaults: {
@@ -250,23 +246,6 @@ module.exports = {
 				path: "./src/images/",
 			},
 			__key: "images",
-		},
-		{
-			resolve: `gatsby-plugin-mdx`,
-			options: {
-				mdxOptions: {},
-				gatsbyRemarkPlugins: [
-					{
-						resolve: `gatsby-remark-images`,
-						options: {
-							maxWidth: 2500,
-							linkImagesToOriginal: false,
-							withWebp: true,
-							loading: "eager",
-						},
-					},
-				],
-			},
 		},
 		{
 			resolve: `gatsby-source-filesystem`,

@@ -38,6 +38,10 @@
 		@apply box-content;
 	}
 
+	html {
+		font-size: min(calc(100dvh / 1390 * 20),calc(100dvw / 2224 * 20))
+	}
+
 	body {
 		background-color: #111;
 		color: #f9f9f9;
@@ -45,39 +49,15 @@
 		color: #1d1d1d; */
 		font-family: "Untitled Sans";
 		font-kerning: normal;
-		font-size: 20px;
+		font-size: 18px;
 		overflow-x: hidden;
 		overflow-y: hidden;
 		-webkit-font-smoothing: antialiased;
 	}
 
-	h1 {
-		font-weight: 500;
-		font-size: 110px;
-		line-height: 1.1;
-	}
-
-	h2 {
-		font-size: 72px;
-		font-weight: 500;
-		letter-spacing: -0.01em;
-	}
-
-	h3 {
-		@apply text-4xl pb-8 tracking-tight;
-	}
-
-	h4 {
-		@apply text-[22px] pt-4;
-	}
-
-	h6 {
-		@apply text-headline-1 font-medium lg:pb-5;
-	}
-
 	p {
-		line-height: 1.6;
-		margin-bottom: calc(20px * 1.6);
+		line-height: 1.5;
+		margin-bottom: calc(20px * 1.5);
 	}
 
 	p:last-child {
@@ -88,104 +68,25 @@
 		line-height: 1.6;
 	}
 
-	img,
-	.img {
-		@apply w-full h-auto;
+	h1 {
+		font-family: "Tiempos Headline";
+		font-size: calc((100dvh / 1390 * 20) * 30);
+		font-weight: 300;
+		line-height: 0.85;
+		transform: translateY(0.05em);
 	}
 
-	.underline-link {
-		line-height: 1.6;
-		border-bottom: 1px solid rgba(249, 249, 249, 1);
+	h1 span {
+		display: block;
+		text-wrap: nowrap;
 	}
 
-	.dan-grid {
-		@apply relative grid grid-cols-12 max-w-full px-5 lg:px-16 mx-auto;
+	h3, h4 {
+		font-size: 36px;
 	}
 
-	.project-info-grid {
-		@apply relative lg:flex justify-between pb-8;
-	}
-
-	.project-info-grid-logo {
-		@apply shrink-0 grow-0 w-u-2 lg:pr-8 xl:pr-12 pb-8;
-	}
-
-	.project-info-grid-info {
-		@apply lg:max-w-[790px] w-full lg:px-8 xl:px-12;
-	}
-
-	.project-info-grid-outcome {
-		@apply lg:max-w-[500px] w-full lg:px-8 xl:px-12;
-	}
-
-	.dan-grid-logo {
-		@apply relative grid grid-cols-12 max-w-logo px-5 lg:px-16 mx-auto;
-	}
-
-	.Typewriter {
-		@apply inline-block align-top;
-	}
-
-	.Typewriter__wrapper {
-		@apply inline-block align-top;
-	}
-
-	.outcome-image {
-		@apply block absolute aspect-square w-2/5 lg:w-1/2 top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4;
-	}
-
-	.fade-in {
-		position: fixed;
-		pointer-events: none;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 50000;
-	}
-
-	.slide-container {
-		@apply box-border;
-		display: grid;
-		grid-template-columns: 4fr 5fr 3fr 0fr 0fr;
-		gap: 0;
-
-		width: 100%;
-
-		cursor: pointer;
-
-		padding: 30px 15px;
-
-		transition: grid-template-columns 0.4s;
-	}
-
-	.slide-element {
-		overflow: hidden;
-		display: flex;
-		align-items: end;
-	}
-
-	.slide-figure {
-		padding: 0 15px;
-		width: 100%;
-
-		img {
-			width: 100%;
-			height: auto;
-			border-radius: 0.25rem;
-		}
-	}
-
-	video {
-		border-radius: 0.25rem;
-	}
-
-	.slide-figure-caption {
-		font-family: m;
-		font-size: 12px;
-		letter-spacing: -0.03em;
-		text-transform: uppercase;
-		font-weight: 600;
-		margin-bottom: 1rem;
+	.project-title {
+		@apply box-content
+		text-wrap: nowrap;
 	}
 }

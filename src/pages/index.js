@@ -2,18 +2,12 @@ import React, { useEffect, useRef, useState } from "react"
 import { graphql } from "gatsby"
 import { motion, useTransform } from "motion/react"
 
-import { Swiper, SwiperSlide } from "swiper/react"
-import { FreeMode, Scrollbar, Mousewheel, Pagination } from "swiper/modules"
-import { ReactLenis, useLenis } from "lenis/react"
+import { ReactLenis } from "lenis/react"
 
 import useMouse from "@react-hook/mouse-position"
 
-import "swiper/css"
-import "swiper/css/bundle"
-
 import Nav from "../components/nav"
 import { Header } from "../components/header"
-import { StaticImage } from "gatsby-plugin-image"
 
 const Index = ({ data }) => {
 	const ref = useRef(null)
@@ -102,18 +96,6 @@ const Index = ({ data }) => {
 					/>
 				</motion.svg>
 			</div>
-
-			{/* <div className="fixed w-[200px] h-full top-0 right-0 cursor-none"
-				onMouseEnter={() => setWhich("right")}
-			onMouseLeave={() => setWhich("default")}
-			>
-			</div> */}
-
-			{/* <div className="fixed w-[200px] h-full top-0 left-0 cursor-none"
-			onMouseEnter={() => setWhich("left")}
-			onMouseLeave={() => setWhich("default")}
->
-			</div> */}
 
 			<ReactLenis
 				root
