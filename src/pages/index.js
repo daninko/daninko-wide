@@ -8,7 +8,7 @@ import useMouse from "@react-hook/mouse-position"
 
 import Nav from "../components/nav"
 import { Header } from "../components/header"
-
+import { Foot } from "../components/foot"
 const Index = ({ data }) => {
 	const ref = useRef(null)
 
@@ -143,9 +143,6 @@ const Index = ({ data }) => {
 					</p>
 				</div>
 			</div>
-			<div className="h-[100dvh] mr-[300px]">
-				<span className="block leading-[0.9] font-[Tiempos_Headline]">Microsoft<br/>Teams</span>
-			</div>
 			<div className="h-[100dvh] min-w-[100dvw] px-[200px] py-[15dvh] box-border flex items-end justify-center">
 				<img
 					className="h-full w-auto"
@@ -172,6 +169,7 @@ const Index = ({ data }) => {
 					</p>
 				</div>
 			</div>
+			<Foot />
 		</div>
 	)
 }

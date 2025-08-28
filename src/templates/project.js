@@ -24,6 +24,7 @@ const Post = ({ data, children }) => {
 					</h1>
 				</div>
 				<MDXProvider components={shortcodes}>{children}</MDXProvider>
+				<Foot page="project" />
 			</div>
 		</>
 	)
