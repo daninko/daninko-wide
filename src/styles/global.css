@@ -58,6 +58,7 @@
 	p {
 		line-height: 1.5;
 		margin-bottom: calc(20px * 1.5);
+		font-size: clamp(16px, 1.4rem , 24px);
 	}
 
 	p:last-child {
@@ -66,6 +67,7 @@
 
 	ul {
 		line-height: 1.6;
+		font-size: clamp(16px, 1.4rem , 24px);
 	}
 
 	h1 {

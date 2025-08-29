@@ -10,6 +10,7 @@ import Nav from "../components/nav"
 import { Header } from "../components/header"
 import { Foot } from "../components/foot"
 import Slideshow from "../components/slideshow"
+import IndexWorkItem from "../components/index-workitem"
 
 const Index = ({ data }) => {
 	const ref = useRef(null)
@@ -113,30 +114,7 @@ const Index = ({ data }) => {
 			{data.allMdx.edges.map(({ node }, i) => {
 				return (
 					<>
-						<div
-							className="flex flex-nowrap mr-[300px]"
-							style={{ width: "fit-content" }}
-						>
-							{/* <div className="h-[100dvh] w-[100dvh] flex justify-center items-end bg-cover bg-[url(https://images.unsplash.com/photo-1669997846396-4b48e78f82d5?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]">
-								<div className="w-[120px] h-[3px] bg-[rgba(245,245,245,0.1)] mb-[20px] rounded">
-									<div className="w-[50%] h-[3px] rounded bg-[#f9f9f9]"></div>
-								</div>
-							</div> */}
-							<Slideshow />
-							<div className="h-[100dvh] w-[35ch] pl-[100px] flex items-end">
-								<div className="my-[15dvh]">
-									<p>{node.frontmatter.blurb}</p>
-									<ul>
-										{node.frontmatter.results.map((i) => {
-											return <li>{i}</li>
-										})}
-									</ul>
-									{node.frontmatter.case == "yes" && (
-										<>thing</>
-									)}
-								</div>
-							</div>
-						</div>
+						<IndexWorkItem data={node} />
 					</>
 				)
 			})}
@@ -155,7 +133,7 @@ const Index = ({ data }) => {
 					</p>
 				</div>
 			</div>
-			
+
 			<Foot />
 		</div>
 	)
