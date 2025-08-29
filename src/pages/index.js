@@ -9,33 +9,35 @@ import useMouse from "@react-hook/mouse-position"
 import Nav from "../components/nav"
 import { Header } from "../components/header"
 import { Foot } from "../components/foot"
+import Slideshow from "../components/slideshow"
+
 const Index = ({ data }) => {
 	const ref = useRef(null)
 
 	const [whichDir, setWhich] = useState("default")
 
-	const leftVariants ={
+	const leftVariants = {
 		default: {
-			opacity: 0
+			opacity: 0,
 		},
 		left: {
-			opacity: 1
+			opacity: 1,
 		},
 		right: {
-			opacity: 0
-		}
+			opacity: 0,
+		},
 	}
 
 	const rightVariants = {
 		default: {
-			opacity: 0
+			opacity: 0,
 		},
 		left: {
-			opacity: 0
+			opacity: 0,
 		},
 		right: {
-			opacity: 1
-		}
+			opacity: 1,
+		},
 	}
 
 	const mouse = useMouse(ref, {
@@ -53,10 +55,9 @@ const Index = ({ data }) => {
 					position: "fixed",
 					top: mouse.clientY - 16,
 					left: mouse.clientX - 38,
-					pointerEvents: "none"
+					pointerEvents: "none",
 				}}
 			>
-
 				<motion.svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="38"
@@ -68,7 +69,7 @@ const Index = ({ data }) => {
 					initial="default"
 					animate={whichDir}
 					transition={{
-						duration: 0.15
+						duration: 0.15,
 					}}
 				>
 					<path
@@ -87,7 +88,7 @@ const Index = ({ data }) => {
 					initial="default"
 					animate={whichDir}
 					transition={{
-						duration: 0.15
+						duration: 0.15,
 					}}
 				>
 					<path
@@ -108,27 +109,38 @@ const Index = ({ data }) => {
 			<a href="#" className="fixed top-0 right-0 px-[20px] py-[20px] z-[500]">
 				Close
 			</a>
-			<div className="flex flex-nowrap mr-[300px]" style={{ width: "fit-content" }}>
-				<div className="h-[100dvh] w-[100dvh] flex justify-center items-end bg-cover bg-[url(https://images.unsplash.com/photo-1669997846396-4b48e78f82d5?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]">
-					<div className="w-[120px] h-[3px] bg-[rgba(245,245,245,0.1)] mb-[20px] rounded">
-						<div className="w-[50%] h-[3px] rounded bg-[#f9f9f9]"></div>
-					</div>
-				</div>
-				<div className="h-[100dvh] w-[458px] pl-[100px] flex items-end">
-					<div className="my-[15dvh]">
-						<p>
-							I led a design team of four in redesigning the NBA's key fan interaction
-							platform, helping drive the league's most successful All-Star weekend to
-							date.
-						</p>
-						<ul>
-							<li>+20% growth in global submissions.</li>
-							<li>The premier major league fan voting experience.</li>
-							<li>Surge in discussion on social channels.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+
+			{data.allMdx.edges.map(({ node }, i) => {
+				return (
+					<>
+						<div
+							className="flex flex-nowrap mr-[300px]"
+							style={{ width: "fit-content" }}
+						>
+							{/* <div className="h-[100dvh] w-[100dvh] flex justify-center items-end bg-cover bg-[url(https://images.unsplash.com/photo-1669997846396-4b48e78f82d5?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]">
+								<div className="w-[120px] h-[3px] bg-[rgba(245,245,245,0.1)] mb-[20px] rounded">
+									<div className="w-[50%] h-[3px] rounded bg-[#f9f9f9]"></div>
+								</div>
+							</div> */}
+							<Slideshow />
+							<div className="h-[100dvh] w-[35ch] pl-[100px] flex items-end">
+								<div className="my-[15dvh]">
+									<p>{node.frontmatter.blurb}</p>
+									<ul>
+										{node.frontmatter.results.map((i) => {
+											return <li>{i}</li>
+										})}
+									</ul>
+									{node.frontmatter.case == "yes" && (
+										<>thing</>
+									)}
+								</div>
+							</div>
+						</div>
+					</>
+				)
+			})}
+
 			<div className="flex items-center mr-[300px]">
 				<div>
 					<p className="text-[36px] font-light w-[38ch]">
@@ -143,32 +155,7 @@ const Index = ({ data }) => {
 					</p>
 				</div>
 			</div>
-			<div className="h-[100dvh] min-w-[100dvw] px-[200px] py-[15dvh] box-border flex items-end justify-center">
-				<img
-					className="h-full w-auto"
-					src="https://images.unsplash.com/photo-1754152728457-902f155ebcae?q=80&w=1732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-				/>
-				<div className="w-[30ch] ml-[100px]">
-					<p>
-						I led a design team of four in redesigning the NBA’s key fan interaction
-						platform, helping drive the league’s most successful All-Star weekend to
-						date.
-					</p>
-				</div>
-			</div>
-			<div className="h-[100dvh] min-w-[100dvw] px-[200px] py-[15dvh] box-border flex items-end justify-center">
-				<img
-					className="h-full w-auto"
-					src="https://images.unsplash.com/photo-1754152728457-902f155ebcae?q=80&w=1732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-				/>
-				<div className="w-[30ch] ml-[100px]">
-					<p>
-						I led a design team of four in redesigning the NBA’s key fan interaction
-						platform, helping drive the league’s most successful All-Star weekend to
-						date.
-					</p>
-				</div>
-			</div>
+			
 			<Foot />
 		</div>
 	)
@@ -218,6 +205,9 @@ export const query = graphql`
 						title
 						project
 						link
+						case
+						blurb
+						results
 					}
 				}
 			}

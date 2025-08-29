@@ -39,7 +39,7 @@
 	}
 
 	html {
-		font-size: min(calc(100dvh / 1390 * 20),calc(100dvw / 2224 * 20))
+		font-size: min(calc(100dvh / 1390 * 20), calc(100dvw / 2224 * 20));
 	}
 
 	body {
@@ -81,12 +81,53 @@
 		text-wrap: nowrap;
 	}
 
-	h3, h4 {
+	h3,
+	h4 {
 		font-size: 36px;
 	}
 
 	.project-title {
 		@apply box-content
 		text-wrap: nowrap;
+	}
+
+	.slideshow-container {
+		position: relative;
+		width: 81dvh;
+		height: 100dvh;
+		overflow: hidden;
+		margin: auto;
+	}
+
+	.image-wrapper {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	.slide-image {
+		width: 105%;
+		height: 105%;
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.progress-bar {
+		position: absolute;
+		bottom: 25px;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 3px;
+		width: 120px;
+		border-radius: 3px;
+		background-color: rgba(249,249,249, 0.05);
+	}
+
+	.progress-fill {
+		height: 100%;
+		background-color: #f9f9f9;
+		border-radius: 3px;
 	}
 }

@@ -24,6 +24,32 @@ const Post = ({ data, children }) => {
 					</h1>
 				</div>
 				<MDXProvider components={shortcodes}>{children}</MDXProvider>
+				<div className="h-[100dvh] min-w-[100dvw] px-[200px] py-[15dvh] box-border flex items-end justify-center">
+					<img
+						className="h-full w-auto"
+						src="https://images.unsplash.com/photo-1754152728457-902f155ebcae?q=80&w=1732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					/>
+					<div className="w-[30ch] ml-[100px]">
+						<p>
+							I led a design team of four in redesigning the NBA’s key fan interaction
+							platform, helping drive the league’s most successful All-Star weekend to
+							date.
+						</p>
+					</div>
+				</div>
+				<div className="h-[100dvh] min-w-[100dvw] px-[200px] py-[15dvh] box-border flex items-end justify-center">
+					<img
+						className="h-full w-auto"
+						src="https://images.unsplash.com/photo-1754152728457-902f155ebcae?q=80&w=1732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					/>
+					<div className="w-[30ch] ml-[100px]">
+						<p>
+							I led a design team of four in redesigning the NBA’s key fan interaction
+							platform, helping drive the league’s most successful All-Star weekend to
+							date.
+						</p>
+					</div>
+				</div>
 				<Foot page="project" />
 			</div>
 		</>
