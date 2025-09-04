@@ -85,8 +85,8 @@
 	}
 
 	h1 span {
+		@apply text-nowrap;
 		display: block;
-		text-wrap: nowrap;
 	}
 
 	h3,
@@ -95,8 +95,7 @@
 	}
 
 	.project-title {
-		@apply box-content
-		text-wrap: nowrap;
+		@apply box-content text-nowrap;
 	}
 
 	.slideshow-container {

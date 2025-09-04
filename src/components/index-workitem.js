@@ -8,18 +8,18 @@ const IndexWorkItem = ({ data }) => {
 		<div className="flex flex-nowrap block mr-[30rem]">
 			{data.frontmatter.case == "yes" ? (
 				<a href={"/" + data.frontmatter.slug}>
-					<Slideshow />
+					<Slideshow assets={data.frontmatter.assets} />
 				</a>
 			) : (
 				<>
-					<Slideshow />
+					<Slideshow assets={data.frontmatter.assets} />
 				</>
 			)}
 
 			<div className="h-[100dvh] ml-[100px] flex items-end">
 				<div className="my-[15dvh]">
 					{data.frontmatter.case == "yes" ? (
-						<a href="#">
+						<a href={"/" + data.frontmatter.slug}>
 							<p className="w-[35ch]">{data.frontmatter.blurb}</p>
 							<ul>
 								{data.frontmatter.results.map((i) => {

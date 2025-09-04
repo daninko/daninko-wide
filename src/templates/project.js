@@ -107,7 +107,7 @@ const Post = ({ data, children }) => {
 				<a href="/" className="fixed top-0 right-0 px-[20px] py-[20px] z-[500]">
 					Close
 				</a>
-				<div className="project-title flex items-center pl-[100px] pr-[300px] min-w-[100dvw]">
+				<div className="project-title overflow-auto flex items-center ml-[100px] mr-[300px]">
 					<h1 className="thanger">
 						<span>{data.mdx.frontmatter.client}</span>
 						<span>{data.mdx.frontmatter.project}</span>

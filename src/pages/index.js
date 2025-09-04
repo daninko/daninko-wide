@@ -26,7 +26,7 @@ const Index = ({ data }) => {
 			{data.allMdx.edges.map(({ node }, i) => {
 				return (
 					<>
-						<IndexWorkItem data={node} key={"work-item-" + i}/>
+						<IndexWorkItem data={node} key={"work-item-" + i} />
 					</>
 				)
 			})}
@@ -46,7 +46,12 @@ const Index = ({ data }) => {
 				</div>
 			</div>
 
-			<Foot />
+			<div className="project-title flex items-center pl-[100px] pr-[300px] min-w-[100dvw]">
+				<h1 className="thanger">
+					<span>Let's make</span>
+					<span>something great.</span>
+				</h1>
+			</div>
 		</div>
 	)
 }
@@ -80,18 +85,7 @@ export const query = graphql`
 				node {
 					body
 					frontmatter {
-						assets {
-							src {
-								childImageSharp {
-									gatsbyImageData(
-										layout: FULL_WIDTH
-										formats: WEBP
-										webpOptions: { quality: 100 }
-									)
-								}
-							}
-							type
-						}
+						assets 
 						title
 						project
 						link
@@ -113,5 +107,60 @@ export const query = graphql`
 		}
 	}
 `
+
+// export const query = graphql`
+// 	query MyQuery {
+// 		site {
+// 			siteMetadata {
+// 				author
+// 				description
+// 				title
+// 				url
+// 				position
+// 				homeHeadline
+// 				contactMethods {
+// 					link
+// 					text
+// 				}
+// 			}
+// 		}
+// 		allMdx(filter: { frontmatter: { collection: { eq: "projects" } } }) {
+// 			edges {
+// 				node {
+// 					body
+// 					frontmatter {
+// 						assets {
+// 							src {
+// 								childImageSharp {
+// 									gatsbyImageData(
+// 										layout: FULL_WIDTH
+// 										formats: WEBP
+// 										webpOptions: { quality: 100 }
+// 									)
+// 								}
+// 							}
+// 							type
+// 						}
+// 						title
+// 						project
+// 						link
+// 						case
+// 						blurb
+// 						results
+// 						slug
+// 					}
+// 				}
+// 			}
+// 		}
+// 		mdx(frontmatter: { collection: { eq: "about" } }) {
+// 			id
+// 			frontmatter {
+// 				content {
+// 					text
+// 				}
+// 			}
+// 		}
+// 	}
+// `
 
 export default Index

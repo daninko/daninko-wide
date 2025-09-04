@@ -7,9 +7,9 @@ const images = [
 	"https://images.unsplash.com/photo-1756312827971-e162f92e5588?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D",
 ]
 
-const Slideshow = () => {
+const Slideshow = ({assets}) => {
 	const SLIDE_DURATION = 5000 // 5 seconds per slide
-	const TOTAL_DURATION = SLIDE_DURATION * images.length
+	const TOTAL_DURATION = SLIDE_DURATION * assets.length
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [progress, setProgress] = useState(0)
 	const progressRef = useRef()
@@ -17,7 +17,7 @@ const Slideshow = () => {
 	useEffect(() => {
 		let start
 		const interval = setInterval(() => {
-			setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+			setCurrentIndex((prevIndex) => (prevIndex + 1) % assets.length)
 		}, SLIDE_DURATION)
 
 		const animateProgress = (timestamp) => {
@@ -41,8 +41,8 @@ const Slideshow = () => {
 			<div className="image-wrapper">
 				<AnimatePresence mode="wait">
 					<motion.img
-						key={images[currentIndex]}
-						src={images[currentIndex]}
+						key={assets[currentIndex]}
+						src={assets[currentIndex]}
 						alt={`Slide ${currentIndex + 1}`}
 						initial={{ opacity: 0, y: "0%" }}
 						animate={{ opacity: 1, y: "-1%" }}
@@ -53,13 +53,14 @@ const Slideshow = () => {
 				</AnimatePresence>
 			</div>
 			<div className="progress-bar">
-				<div className="progress-fill" style={{ width: progress + "%" }}></div>
+				<div className="progress-fill" style={{ width: progress + "%"}}></div>
 
 				{/* <motion.div
 					className="progress-fill"
+					layout
 					initial={{ width: 0 }}
 					animate={{ width: `${progress}%` }}
-					transition={{ ease: "linear", duration: 0.1 }}
+					transition={{ ease: "linear", duration: 0.05 }}
 				/> */}
 			</div>
 		</div>
