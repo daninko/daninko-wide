@@ -7,7 +7,7 @@ const images = [
 	"https://images.unsplash.com/photo-1756312827971-e162f92e5588?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D",
 ]
 
-const Slideshow = ({assets}) => {
+const Slideshow = ({ assets }) => {
 	const SLIDE_DURATION = 5000 // 5 seconds per slide
 	const TOTAL_DURATION = SLIDE_DURATION * assets.length
 	const [currentIndex, setCurrentIndex] = useState(0)
@@ -16,9 +16,13 @@ const Slideshow = ({assets}) => {
 
 	useEffect(() => {
 		let start
-		const interval = setInterval(() => {
-			setCurrentIndex((prevIndex) => (prevIndex + 1) % assets.length)
-		}, SLIDE_DURATION)
+		let interval
+
+		setTimeout(() => {
+			interval = setInterval(() => {
+				setCurrentIndex((prevIndex) => (prevIndex + 1) % assets.length)
+			}, SLIDE_DURATION)
+		}, Math.round(Math.random() * 3000))
 
 		const animateProgress = (timestamp) => {
 			if (!start) start = timestamp
@@ -52,8 +56,8 @@ const Slideshow = ({assets}) => {
 					/>
 				</AnimatePresence>
 			</div>
-			<div className="progress-bar">
-				<div className="progress-fill" style={{ width: progress + "%"}}></div>
+			<div className="progress-bar opacity-0">
+				<div className="progress-fill" style={{ width: progress + "%", opacity: 0 }}></div>
 
 				{/* <motion.div
 					className="progress-fill"

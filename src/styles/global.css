@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.swiper-slide {
-	width: fit-content;
-}
-
-/* .swiper-wrapper {
-	transition-duration: 0.05s !important;
-	transition-timing-function: ease-out;
-  } */
-
 @layer base {
 	@font-face {
 		font-family: "si";
@@ -20,7 +11,7 @@
 	@font-face {
 		font-family: "si";
 		src: url("./fonts/SuisseIntl-Book.woff2") format("woff2");
-		font-weight: 450;
+		font-weight: 300;
 	}
 	@font-face {
 		font-family: "si";
@@ -47,9 +38,9 @@
 		color: #f9f9f9;
 		/* background-color: #f9f9f9;
 		color: #1d1d1d; */
-		font-family: "Untitled Sans";
+		font-family: "si";
+		letter-spacing: 0.01em;
 		font-kerning: normal;
-		font-size: 18px;
 		overflow-x: hidden;
 		overflow-y: hidden;
 		-webkit-font-smoothing: antialiased;
@@ -57,23 +48,27 @@
 
 	p {
 		line-height: 1.5;
-		margin-bottom: calc(20px * 1.5);
-		font-size: clamp(16px, 1.4rem , 24px);
+		margin-bottom: clamp(16px, 2rem, 30px);
+		font-size: clamp(16px, 1.2rem , 20px);
 	}
 
 	p:last-child {
 		margin-bottom: 0;
 	}
 
+	ul {
+		margin-bottom: clamp(16px, 1.5rem, 30px);
+	}
+
+	ul li {
+		line-height: 1.5;
+		font-size: clamp(16px, 1.2rem , 20px);
+	}
+
 
 	p.big-p {
 		font-size: clamp(16px, 2.5rem , 40px);
 		width: 38ch;
-	}
-
-	ul {
-		line-height: 1.6;
-		font-size: clamp(16px, 1.4rem , 24px);
 	}
 
 	h1 {
@@ -139,7 +134,56 @@
 	}
 
 	.nav-name {
-		font-size: clamp(16px, 1.4rem , 24px);
+		font-size: clamp(16px, 1.2rem , 20px);
 		line-height: 1.5;
+	}
+
+	.rounded-button {
+		padding: clamp(4px, 0.25rem, 8px) clamp(8px, 0.5rem, 16px);
+		border-radius: clamp(2px, 0.5rem, 4px);
+		overflow: auto;
+	}
+
+	.nav-column {
+		min-width: clamp(250px,21rem,400px);
+	}
+
+	.demo-icon {
+      font-family: "arrow";
+      font-style: normal;
+      font-weight: normal;
+      speak: never;
+	  font-size: clamp(12px, 1rem, 16px);
+     
+      display: inline-block;
+      text-decoration: inherit;
+      width: 0.8em;
+      margin-right: .2em;
+      text-align: center;
+	  transform: translateY(-0.05em);
+     
+      /* For safety - reset parent styles, that can break glyph codes*/
+      font-variant: normal;
+      text-transform: none;
+     
+     
+      /* Animation center compensation - margins should be symmetric */
+      /* remove if not needed */
+      margin-left: .2em;
+     
+      /* You can be more comfortable with increased icons size */
+      /* font-size: 120%; */
+     
+      /* Font smoothing. That was taken from TWBS */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+     
+      /* Uncomment for 3D effect */
+      /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+    }
+
+	.underlined {
+		border-bottom: 1px solid rgba(249,249,249,0.25);
+		padding: 0.1em 0;
 	}
 }

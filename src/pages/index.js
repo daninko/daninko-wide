@@ -80,12 +80,15 @@ export const query = graphql`
 				}
 			}
 		}
-		allMdx(filter: { frontmatter: { collection: { eq: "projects" } } }) {
+		allMdx(
+			filter: { frontmatter: { collection: { eq: "projects" } } }
+			sort: { frontmatter: { order: ASC } }
+		) {
 			edges {
 				node {
 					body
 					frontmatter {
-						assets 
+						assets
 						title
 						project
 						link
