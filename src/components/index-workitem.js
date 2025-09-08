@@ -41,7 +41,7 @@ const IndexWorkItem = ({ data }) => {
 						>
 							<p className="w-[32ch]">{data.frontmatter.blurb}</p>
 							<ul className="text-nowrap">
-								<li className="opacity-[0.5]">Outcomes</li>
+								<li className="disc opacity-[0.5]">Outcomes</li>
 								{data.frontmatter.results.map((i) => {
 									return <li>{i}</li>
 								})}
@@ -54,7 +54,7 @@ const IndexWorkItem = ({ data }) => {
 									animate={hover ? "hover" : "initial"}
 									transition={{ duration: 0.15 }}
 								>
-									<span className="underlined">in depth</span> <span className="text-[0.85em] inline-block -translate-y-[0.1em]">→</span>
+									<span className="text-[16px] underlined">in depth <span className="text-[0.85em] inline-block -translate-y-[0.1em]">→</span></span>
 								</motion.span>
 							</p>
 						</a>
